@@ -20,6 +20,10 @@ class View_Activity_List extends \View{
 					// }
 			}
 
+			if($activity['activity_type'] == 'PostCard'){
+				$this->add('xsocialApp/View_Activity',array('activity_id'=>$this->model->id,'activity_array'=>$activity),null,array("xsocial-postcard"));
+			}		
+
 			$this->add('xsocialApp/View_Activity',array('activity_id'=>$this->model->id,'activity_array'=>$activity));
 		}
 		parent::recursiveRender();

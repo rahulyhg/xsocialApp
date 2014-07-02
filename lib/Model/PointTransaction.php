@@ -14,6 +14,18 @@ class Model_PointTransaction extends \Model_Table{
 		$this->addField('remark');
 		$this->addField('on_date')->type('datetime')->defaultValue(date('Y-m-d H:i:s'));
 		$this->add('dynamic_model/Controller_AutoCreator');
+		
+	}
 
+	function createNew($point,$member_id,$remark=null){
+		if($this->loaded())
+			throw new \Exception("Use Empty Model Object");
+		$this['point_id']=0;
+		$this['member_id']=$member_id;
+		$this['points']=$point;
+		$this['remark']=$remark;
+		$this->save();
+		return $this;
+			
 	}
 }

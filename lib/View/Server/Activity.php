@@ -18,7 +18,7 @@ class View_Server_Activity extends \View{
 
 		$activities_2_show = $this->add('xsocialApp/Model_Activity');
 		
-		$activities_2_show->addCondition('activity_type',array('StatusUpadate','updateProfilePic','updateCoverPage'));
+		$activities_2_show->addCondition('activity_type',array('StatusUpadate','updateProfilePic','updateCoverPage','PostCard'));
 
 		$activities_2_show->_dsql()->where(
 				$activities_2_show->_dsql()->orExpr()
