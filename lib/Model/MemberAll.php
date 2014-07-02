@@ -152,7 +152,13 @@ class Model_MemberAll extends \Model_Table{
 		else
 			return false;
 			// throw new \Exception("Error Processing Request", 1);
-											
+	}
+
+
+	function redeemPoint($redeemPoint,$remark){
+		$point_transaction=$this->ref('xsocialApp/PointTransaction');
+		$point_transaction->createNew($redeemPoint,$this->id,$remark);
+		return true;
 	}
 
 	function is_eligible($date1){

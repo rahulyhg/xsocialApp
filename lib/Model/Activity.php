@@ -16,7 +16,7 @@ class Model_Activity extends \Model_Table{
 		$this->addField('video_url');
 
 		$this->addField('visibility')->setValueList(array(100=>'Public',50=>'Friends',10=>'Private'))->defaultValue(100)->mandatory(true);
-		$this->addField('activity_type')->enum(array('StatusUpadate','Comment','Like','Share','updateCoverPage','updateProfilePic','PostCardShared'));
+		$this->addField('activity_type')->enum(array('StatusUpadate','Comment','Like','Share','updateCoverPage','updateProfilePic','PostCardShared','PostCard'));
 		$this->addField('created_at')->type('datetime')->defaultValue(date('Y-m-d H:i:s'));
 		$this->addField('updated_at')->type('datetime')->defaultValue(date('Y-m-d H:i:s'));
 		
@@ -178,7 +178,7 @@ class Model_Activity extends \Model_Table{
 		$comment_activity['related_activity_id']=$this->id;
 		$comment_activity['activity_detail']=$comment;
 		$comment_activity['img_id']=$img_id;
-
+ 
 		$comment_activity->save();	
 	}
 
@@ -213,5 +213,32 @@ class Model_Activity extends \Model_Table{
 		return true;
 	}
 	
+	// load specific type of activity
+	function loadActivity($activity_type){
+		$this->addCondition('activity_type',$activity_type);
+		return $this;
+	}
+
+	// get all postcard record of current logged member
+	function getPostCard($member_id){
+		$this->addCondition('activity_type','PostCard')
+					->addCondition('from_member_id',$member_id);			
+		return $this;
+	}
+
+	// creating new postcard entry
+	function createPostCard($postcard_name, $activity_detail=null, $img_id=null){
+		// if(!$this->loaded()) throw $this->exception('Can\'t create post crad');
+
+		$postcard_activity = $this->add('xsocialApp/Model_Activity');
+		$postcard_activity['activity_type']='PostCard';
+		$postcard_activity['from_member_id']=$this->api->xsocialauth->model->id;
+		$postcard_activity['name']=$postcard_name;
+		$postcard_activity['activity_detail']=$activity_detail;
+		$postcard_activity['img_id']=$img_id;
+
+		$postcard_activity->save();	
+	}
+
 
 }
