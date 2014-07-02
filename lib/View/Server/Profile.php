@@ -15,29 +15,29 @@ class View_Server_Profile extends \View{
 	}
 
 	function recursiveRender(){
-		// $this->template->trySet('member_name',$this->api->xsocialauth->model['first_name']);
 		$profile_of= $_GET['profile_of'];
 		if(!$profile_of) $profile_of=$this->api->xsocialauth->model->id;
-		$member=$this->add('xsocialApp/Model_AllVerifiedMembers');
+		
+		// TODO :: Check if member is already set by some other means and we are overridding
+		// it here.. Wrong Profile Pic ???
+		$this->member = $member=$this->add('xsocialApp/Model_AllVerifiedMembers');
 		$member->tryLoad($profile_of);
-		if(!$member->loaded()){
-			$profile_of = $this->api->cu_id;
-			$member->load($profile_of);
-		}
+
 
 		// throw new \Exception($member['profile_pic']);
 		if($member['profile_pic']){
 				$src=$member['profile_pic'];
 				$this->template->set('member_pic',$member['profile_pic']);
-			}
-			elseif($this->member['gender']=='Female'){
-					$src='female.png';
+			}else{
+				if($this->member['gender']=='Female'){
+						$src='female.png';
+						$this->template->set('member_pic',$src);
+					}
+				else{
+					$src="male.png";			
 					$this->template->set('member_pic',$src);
-				}
-			else{
-				$src="male.png";			
-				$this->template->set('member_pic',$src);
-			}		
+				}		
+			}
 		
 		$this->template->set('member_name',$member['name']);
 		parent::recursiveRender();
