@@ -1,2 +1,4 @@
-xsocialApp
-==========
+xsocial
+=======
+
+Social Component for xEpan
