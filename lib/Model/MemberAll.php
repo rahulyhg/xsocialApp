@@ -8,7 +8,7 @@ class Model_MemberAll extends \Model_Table{
 		$this->addField('first_name');
 		$this->addField('last_name');
 		$this->addField('gender')->enum(array('Male','Female'));
-		$this->addField('date_of_tbirth')->type('date');
+		$this->addField('date_of_birth')->type('date');
 		$this->addField('emailID')->hint('Used as your Username');
 		$this->addField('password')->type('password');
 		$this->addField('activation_code');
