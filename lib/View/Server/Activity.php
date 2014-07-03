@@ -10,7 +10,7 @@ class View_Server_Activity extends \View{
 		// $a->debug()->tryLoadAny();
 		// return;
 
-		$this->addClass('activity-list');
+		$this->addClass('activity-list-container');
 
 		$me = $this->api->xsocialauth->model;
 		if($_GET['profile_of'])

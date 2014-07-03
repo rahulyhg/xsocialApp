@@ -8,7 +8,8 @@ class View_Activity extends \View{
 
 	function init(){
 		parent::init();
-		$this->js('reload')->reload();
+		$this->addClass('activity');
+		$this->js('reload')->_selector('#activity_view_'.$this->activity_id)->reload();
 	}
 
 

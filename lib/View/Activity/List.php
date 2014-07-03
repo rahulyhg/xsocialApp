@@ -5,7 +5,7 @@ class View_Activity_List extends \View{
 		
 
 	function recursiveRender(){
-		$this->addClass('activity');
+		$this->addClass('activity-list');
 		$this->js('reload')->reload();
 		foreach ($this->model as $activity) {
 			if($this->model['from_member_id']==$this->api->xsocialauth->model->id){
