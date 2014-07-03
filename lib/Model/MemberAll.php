@@ -5,6 +5,7 @@ class Model_MemberAll extends \Model_Table{
 	function init(){
 		parent::init();
 
+		
 		$this->addField('first_name');
 		$this->addField('last_name');
 		$this->addField('gender')->enum(array('Male','Female'));
