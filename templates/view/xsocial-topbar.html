@@ -142,19 +142,24 @@
 			</nav>
 		</div>		
 
-		<div class="col-sm-3 default-fontsize text-right" style="padding-top:3%;">
-			<div class="text-left" style="text-transform:capitalize;font-size:0.5em;">
-				<?$member_login?>
+		<div class="col-sm-3 default-fontsize text-right">
+			
+			<div class="row">
+				<div class="col-md-12">
+			    	<a href="?epan=web&subpage=xsocial-dashboard" title="Home" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-home "></i></a>	
+				
+					<a href="?epan=web&subpage=xsocial-profile" title="Profile" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-user"></i></a>
+
+					<?logout?>logout<?/logout?>			
+					<?$setting?>	
+				</div>		
 			</div>
-			 <span style="display:none;"> 
-			  <?$setting?>
-			  </span>
-	    	<a href="?epan=web&subpage=xsocial-dashboard" title="Home" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-home "></i></a>
-						
-			<a href="?epan=web&subpage=xsocial-profile" title="Profile" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-user"></i></a>
+			<div class="text-left" style="text-transform:capitalize;font-size:0.5em;">
+				Welcome <?$member_login?>
+			</div>					
 			
 			<!-- <img class="glyphicon glyphicon-log-out logout"/> -->
-			<?logout?>logout<?/logout?>
+	
 			</div>
 		</div>	
 	</div>	

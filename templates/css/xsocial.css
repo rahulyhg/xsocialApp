@@ -71,3 +71,18 @@
 /*.home-page-right *{
 	position:fixed;
 }*/
+
+/*activity class*/
+.activity-cursor{
+	cursor: pointer;
+}
+.capitalize{
+	text-transform: capitalize;
+}
+
+/*postcard */
+
+.postcard-img{
+	max-width: 100%;
+	width:auto;
+}

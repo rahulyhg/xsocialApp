@@ -11,6 +11,16 @@
 		background-repeat:no-repeat;
 		margin:0.1em;
 	}
+
+	.modal-body > img {
+		max-width: 100%;
+		width:auto;
+		height: auto;
+	}
+	.uploded-photo  img:hover{
+		cursor: pointer;
+	}
+
 </style>
 
 <div id='<?$_name?>'>
@@ -23,7 +33,27 @@
  		<div class="panel-body">
 			<?rows?>
 				<?row?>
-				<div class="uploded-photo thumbnail" style="background-image:url('<?img?>  <?/img?>');">
+				<span  class="uploded-photo thumbnail" data-toggle="modal" data-target="#myModal_<?$id?>">
+				       <img src="<?img?>  <?/img?>"/>
+				</span>
+				<!-- Modal -->
+				<div class="modal fade" id="myModal_<?$id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				        <h4 class="modal-title" id="myModalLabel"></h4>
+				      </div>
+				      <div class="modal-body">
+				       <img src="<?img?>  <?/img?>"/>
+				      </div>
+				      <div class="modal-footer">
+				              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				              
+				            </div>
+				    </div>
+				  </div>
+
 				</div>
 				<?/row?>
 			<?/rows?>			
