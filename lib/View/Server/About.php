@@ -63,4 +63,19 @@ class View_Server_About extends \View{
 		parent::recursiveRender();
 
 	}
+
+	function defaultTemplate(){
+		$l=$this->api->locate('addons',__NAMESPACE__, 'location');
+		$this->api->pathfinder->addLocation(
+			$this->api->locate('addons',__NAMESPACE__),
+			array(
+		  		'template'=>'templates',
+		  		'css'=>'templates/css',
+		  		'js'=>'templates/js'
+				)
+			)->setParent($l);
+
+		return array('view/xsocial-about');
+
+	}
 }
