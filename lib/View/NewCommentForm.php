@@ -22,7 +22,7 @@ class View_NewCommentForm extends \View{
 			$js=array(
 					$form->js()->reload(),
 					$this->js()->univ()->successMessage('You Just Updated Your Status'),
-					$this->js()->_selector('.comments-block-'.$form['commented_activity_id'])->prepand($new_activity_html)
+					$this->js()->_selector('.comments-block-'.$form['commented_activity_id'])->prepend($new_activity_html)
 				);
 			$this->js(true,$js)->execute();			
 		}
