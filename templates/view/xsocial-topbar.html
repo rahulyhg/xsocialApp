@@ -72,7 +72,12 @@
 		font-size:2em;
 		
 	}
-
+	.login-name{
+		text-transform:capitalize;
+		font-size:0.5em;
+		padding:0px 0.3em 0px 0px;
+		margin: 0px;
+	}
 </style>
 
 
@@ -91,21 +96,20 @@
 		        	<!-- <input type="text" class="form-control" placeholder="Search Friends Here"> -->
 					<?search?>Search Friend <?/search?>
 		        <!-- </div>
-		    </form>
- -->			
+		    </form> -->			
 		</div>
 
 		<div class="col-sm-3">
 			<nav>	
-				<ul >
-					<li >
+				<ul>
+					<li class='req-toolbar-li'>
 					<div style="width:100%;" class="text-center">
-						<span data-toggle="tooltip" data-placement="bottom" class="badge function-icon default-height" title="Buddy Request"><img src="epans/web/social/friend_request.png" class="glyphicon friends function-icon"><?friends?><?/friends?></span>
+						<span data-toggle="tooltip" data-placement="bottom" class="badge function-icon default-height" title="Buddy Request"><img src="epans/web/social/friend_request.png" class="glyphicon friends function-icon"><?friends?><?/friends?></span>  	
 						<div><small>Buddy Req.</small></div>	
 					</div>
 		  			</li>
 
-					<li >
+					<li class='notification-toolbar-li'>
 					<div style="width:100%" class="text-center">
 						<span data-toggle="tooltip" data-placement="bottom" class="badge glyphicon function-icon default-height" title="Notification"><img src="epans/web/social/friends.png" class="glyphicon friends function-icon"><?notification?>  <?/notification?></span>
 						<div><small>Notify</small>
@@ -124,7 +128,7 @@
 		  			</div>
 		  			</li>
 
-					<li>	
+					<li class="message-toolbar-li">	
 					<div>
 						<div style="width:100%" class="text-center">
 						<span title="Message" data-toggle="tooltip" data-placement="bottom" class="badge function-icon default-height"><img src="epans/web/social/message.png" class="glyphicon friends function-icon">
@@ -142,21 +146,27 @@
 			</nav>
 		</div>		
 
-		<div class="col-sm-3 default-fontsize text-right" style="padding-top:3%;">
-			<div class="text-left" style="text-transform:capitalize;font-size:0.5em;">
+		<div class="col-sm-3 default-fontsize text-right">
+			<div class="row">
+				<div class="col-md-4 login-name text-right">
+				Welcome
+				</div>
+				<div class="col-md-8 login-name text-left">
 				<?$member_login?>
+				</div>
+			</div>			
+			<div class="row">
+				<div class="col-md-12">
+			    	<a href="?epan=web&subpage=xsocial-dashboard" title="Home" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-home "></i></a>	
+				
+					<a href="?epan=web&subpage=xsocial-profile" title="Profile" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-user"></i></a>
+
+					<?logout?>logout<?/logout?>			
+					<span style="display:none;"><?$setting?></span>	
+				</div>		
 			</div>
-			 <span style="display:none;"> 
-			  <?$setting?>
-			  </span>
-	    	<a href="?epan=web&subpage=xsocial-dashboard" title="Home" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-home "></i></a>
-						
-			<a href="?epan=web&subpage=xsocial-profile" title="Profile" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-user"></i></a>
-			
-			<!-- <img class="glyphicon glyphicon-log-out logout"/> -->
-			<?logout?>logout<?/logout?>
-			</div>
-		</div>	
+		</div>
+	</div>	
 	</div>	
 
 </div>
