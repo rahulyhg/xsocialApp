@@ -6,7 +6,10 @@ class View_Activity extends \View{
 	public $activity_id;
 	public $activity_array=array();
 
-	
+	function init(){
+		parent::init();
+		$this->js('reload')->reload();
+	}
 
 
 	function recursiveRender(){
@@ -18,6 +21,7 @@ class View_Activity extends \View{
 		
 		$this->template->set('activity_detail',$this->activity_array['activity_detail']);
 		$this->template->set('activity_id',$this->activity_array['id']);
+		$this->template->set('visibility',$this->activity_array['visibility']);
 		$this->template->trySet('is_by_friend',$this->activity_array['is_by_friend']);
 		$this->template->set('like_status',($this->activity_array['like_status']=='Y'?'UnLike':'Like'));
 		
@@ -28,7 +32,7 @@ class View_Activity extends \View{
 		if($this->activity_array['from_member_id']==$this->api->xsocialauth->model->id){
 			// throw new \Exception("Error Processing Request", 1);
 			
-			$this->add('xsocialApp/View_Activity_EditActivity',array('activity_id'=>$this->activity_array['id'],'activity_view'=>$this->name),'edit');
+			// $this->add('xsocialApp/View_Activity_EditActivity',array('activity_id'=>$this->activity_array['id'],'activity_view'=>$this->name),'edit');
 
 		}else{
 			$this->template->tryDel('edit_delete_block');

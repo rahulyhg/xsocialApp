@@ -1,0 +1,33 @@
+<div id='<?$_name?>' >
+	<div class='xsocial-share-div' style='display:none' title="Share Activity">
+		<form action='#' onsubmit="javascript: return false;">
+			<label for='activity_detail'>
+				<textarea id="say_something_share" name="say_something_share" placeholder="Say Something">
+				</textarea>
+			</label>
+			<select id='visibility_share' name='visibility_share'>
+				<option  value='100' selected>Public</option>
+				<option value='50'>Friends</option>
+				<option value='10'>Private</option>
+			</select>
+		</form>
+	</div>
+	
+	<div class='loading-more alert alert-info text-center' style='display:none'>
+		Loading More
+	</div>
+	
+	<div class='edit-activity-div' style='display:none' title='Edit Activity Content'>
+		<form action='#' onsubmit="javascript: return false;">
+			<label for='activity_detail'>
+				<textarea id="say_something_edit" name="say_something_edit" placeholder="Say Something">
+				</textarea>
+			</label>
+			<select id='visibility_edit' name='visibility_edit'>
+				<option  value='100' selected>Public</option>
+				<option value='50'>Friends</option>
+				<option value='10'>Private</option>
+			</select>
+		</form>
+	</div>
+</div>

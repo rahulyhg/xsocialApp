@@ -10,7 +10,7 @@
 
 </style>
 
-<div id='activity_view_<?$activity_id?>' class='well well-sm <?$class?>'>
+<div id='activity_view_<?$activity_id?>' class='well well-sm <?$class?>' visibility="<?$visibility?>">
 	<div class="row">
 		
 		<div class="col-md-2">
@@ -24,7 +24,10 @@
 				</div>
 				<?edit_delete_block?>
 				<div class="col-md-3 profilename">
-					<b class="activity-cursor"><?edit?>edit<?/edit?>
+					<b class="activity-cursor">
+						<?edit?>
+						<a href='#removeAction' id='remove_for_<?$activity_id?>' onclick='$(this).univ().edit_me(<?$activity_id?>)'>Edit</a>
+						<?/edit?>
 					</b>
 				</div>
 				<div class="col-md-3 profilename">
@@ -39,7 +42,9 @@
 			
 			<div class="row">
 				<div class="col-md-12 text-success">
-					<?activity_detail?><?/activity_detail?>
+					<div class='activity-<?$activity_id?>-text'>
+						<?activity_detail?><?/activity_detail?>
+					</div>
 					<div class="associate-img" >
 						<?associated_pic_or_video_block?>
 					</div>
@@ -84,7 +89,7 @@
 						</div>
 						<div>
 							<?share_button1?>
-							<a href='#' onclick="$(this).univ().share_me(<?$activity_id?>);">
+							<a href='#shareAction' onclick="$(this).univ().share_me(<?$activity_id?>);">
 								Share
 							</a>
 							<?/share_button1?>

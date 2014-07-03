@@ -4,30 +4,24 @@ class page_xsocialApp_page_activitypages_editactivity extends Page{
 	function init(){
 		parent::init();
 
-		$this->api->stickyGET('edit_activity_id');
-		$this->api->stickyGET('activity_view');
-		// throw new \Exception($_GET['edit_activity_id'], 1);
-		
+		$this->api->stickyGET('activity_id');
+
 
 		$activity=$this->add('xsocialApp/Model_Activity');
-		$activity->load($_GET['edit_activity_id']);
-		// $activity->addCondition('activity_type',$_GET['activity_type']);
+		$activity->load($_REQUEST['activity_id']);
 		
-		$form=$this->add('Form');
-		$form->setModel($activity,array('activity_detail'));
-		$form->addSubmit('Edit');		
+		// check if my Activity ;) Hacking Attempt Found ... 
 
-		if($form->isSubmitted()){
-			
-			
-			$form->update();
-			$form->js(null,$this->js()->_selector('#'.$_GET['activity_view'])->trigger('reload'))->univ()->closeDialog()->execute();
+		if($activity['from_member_id'] != $this->api->xsocialauth->model->id){
+			echo $this->js(true)->univ()->errorMessage('Itne Shane tum hi ho kya ...');
+			exit;
 		}
-		// $form->setModel($activity);
 
+		$activity['activity_detail'] = $_REQUEST['say_something'];
+		$activity['visibility'] = $_REQUEST['visibility'];
+		$activity->save();
 
-		
-
-
+		echo $this->js(true)->_selector('#activity_view_'.$_REQUEST['activity_id'])->trigger('reload');
+		exit;
 		}
 }

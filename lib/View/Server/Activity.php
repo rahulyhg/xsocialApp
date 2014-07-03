@@ -10,6 +10,8 @@ class View_Server_Activity extends \View{
 		// $a->debug()->tryLoadAny();
 		// return;
 
+		$this->addClass('activity-list');
+
 		$me = $this->api->xsocialauth->model;
 		if($_GET['profile_of'])
 			$me = $this->add('xsocialApp/Model_MemberAll')->load($_GET['profile_of']);
@@ -18,7 +20,7 @@ class View_Server_Activity extends \View{
 
 		$activities_2_show = $this->add('xsocialApp/Model_Activity');
 		
-		$activities_2_show->addCondition('activity_type',array('StatusUpadate','updateProfilePic','updateCoverPage','PostCard'));
+		$activities_2_show->addCondition('activity_type',array('StatusUpadate','updateProfilePic','updateCoverPage','PostCard','Share'));
 
 		$activities_2_show->_dsql()->where(
 				$activities_2_show->_dsql()->orExpr()
@@ -29,7 +31,7 @@ class View_Server_Activity extends \View{
 			);
 
 		$activities_2_show->_dsql()->having(
-				'visibility = 100 or (visibility = 50 and is_by_friend = 1) or (visibility = 10 and from_member_id = '.$this->api->xsocialauth->model->id.')'
+				'visibility = 100 or (visibility = 50 and (is_by_friend = 1 or from_member_id= '.$this->api->xsocialauth->model->id.')) or (visibility = 10 and from_member_id = '.$this->api->xsocialauth->model->id.')'
 			);
 
 		// FILTER MODEL WITH ALL POSSIBLE CONDITIONS AND PAGINATOR VALUES
