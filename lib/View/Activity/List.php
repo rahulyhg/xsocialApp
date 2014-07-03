@@ -29,7 +29,8 @@ class View_Activity_List extends \View{
 
 		}
 
-		$this->add('View',null,null,array('view/xsocial-activity-dialogs'));
+		$div= $this->add('View',null,null,array('view/xsocial-activity-dialogs'));
+		$div->add('xsocialApp/View_NewCommentForm',null,'comment_form_spot');
 
 		parent::recursiveRender();
 	}

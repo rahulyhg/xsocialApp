@@ -7,8 +7,7 @@ class View_ActivityComments extends \View{
 
 	function init(){
 		parent::init();
-		$this->set('comment');
-		$this->addClass('comments-block-'.$this->activity_id);
+		// $this->addClass('comments-block-'.$this->activity_id);
 		$this->js('reload')->reload();
 	}
 
@@ -18,8 +17,6 @@ class View_ActivityComments extends \View{
 		foreach ($this_activity_comments as $comment) {
 			$this->add('xsocialApp/View_CommentView',array('activity_id'=>$this_activity_comments->id,'comment_array'=>$comment));
 		}
-
-		$this->add('xsocialApp/View_NewCommentForm',array('activity_id'=>$this->activity_id));
 
 		parent::recursiveRender();
 	}

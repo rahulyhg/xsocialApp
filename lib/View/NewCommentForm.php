@@ -2,36 +2,29 @@
 namespace xsocialApp;
 
 class View_NewCommentForm extends \View{
-	public $activity_id;
 	function init() {
-		parent::init();
-
-		if ( $this->activity_id===null )
-			throw $this->exception( 'activity_id is not defined' )->addMoreInfo( "In View", $this->owner );
-		
-	}
-
-	function recursiveRender() {
-
-		$comment=$this->add('xsocialApp/Model_Activity');
-		$comment->load($this->activity_id);
+		parent::init();		
 
 		$new_comment = $this->add('xsocialApp/Model_Activity');
-		$new_comment->addCondition('related_activity_id',$comment->id);
 
 		$form=$this->add('Form');
 		$form->setModel($new_comment,array('activity_detail','img_id'));
-		// $form->addField('line','comment');
+		$form->addField('hidden','commented_activity_id')->addClass('comment_activity_id_input');
 
 		if($form->isSubmitted()){
-			$comment->commented($form['activity_detail'],$form['img_id']);
-			// $form->js(null,$form->js()->_selector('.comments-block-'.$this->owner->activity_id)->trigger('reload'))->reload()->execute();
-			$form->js(null,$form->js()->_selector('.activity')->trigger('reload'))->reload()->execute();
-			
-		}
-		
-		
-		parent::recursiveRender();
-	}
+			$comment=$this->add('xsocialApp/Model_Activity');
+			$comment->load($form['commented_activity_id']);
+			$activity = $comment->commented($form['activity_detail'],$form['img_id']);
 
+			$new_activity = $this->add('xsocialApp/View_CommentView',array('activity_id'=>$activity->id,'comment_array'=>$activity));
+			$new_activity_html = $new_activity->getHTML();
+
+			$js=array(
+					$form->js()->reload(),
+					$this->js()->univ()->successMessage('You Just Updated Your Status'),
+					$this->js()->_selector('.comments-block-'.$form['commented_activity_id'])->prepand($new_activity_html)
+				);
+			$this->js(true,$js)->execute();			
+		}
+	}
 }

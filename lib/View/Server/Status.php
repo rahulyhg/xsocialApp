@@ -22,15 +22,22 @@ class View_Server_Status extends \View{
 			$activity = $this->add('xsocialApp/Model_Activity');
 			$activity->newPost($form->getAllFields());
 
-			$form->js(null,$this->js()->_selector('.activity')->trigger('reload'))->reload()->execute();
+			$new_activity = $this->add('xsocialApp/View_Activity',array('activity_id'=>$activity->id,'activity_array'=>$activity));
+			$new_activity_html = $new_activity->getHTML();
+
+			$js=array(
+					$this->js()->univ()->successMessage('You Just Updated Your Status'),
+					$this->js()->_selector('.activity-list')->prepend($new_activity_html)
+				);
+			$this->js(true,$js)->execute();
 		}
 	}
 
 	function recursiveRender(){
 		// $this->api->template->appendHTML('js_include','<script type="text/javascript" href="epan-components/xsocialApp/templates/js/xsocialApp-status.js" />');
-		$this->js(true)->_load('xsocialApp-js1')
-		->univ()->status();
-		// ->hide_photo_video_field_of_status($this->status_text_box_field->name);
+		$this->js(true)->_load('xsocialApp-js1')->univ()
+		// ->univ()->status();
+		->hide_photo_video_field_of_status($this->status_text_box_field->name);
 		parent::recursiveRender();
 	}
 

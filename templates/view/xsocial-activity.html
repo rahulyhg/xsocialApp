@@ -102,9 +102,16 @@
 				<div class="col-md-4"><?activity_share_list?>activity_share_list<?/activity_share_list?></div>
 			</div>
 			
+			<?comment_block_area?>
 			<div class="row" style="margin-top:3px;">
-				<div class="col-md-12"><?$comments_block?></div>
+				<div>
+					<button class='btn btn-default btn-sm' onclick='javascript:$(this).univ().showCommentsForm(<?$activity_id?>);'>Comments</button>
+				</div>
+				<div class="col-md-12 comment-block comments-block-<?$activity_id?>">
+					<?$comments_block?>
+				</div>
 			</div>
+			<?/comment_block_area?>
 		</div>
 	</div>
 	

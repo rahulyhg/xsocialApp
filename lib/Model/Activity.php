@@ -207,6 +207,7 @@ class Model_Activity extends \Model_Table{
 		$comment_activity['img_id']=$img_id;
  
 		$comment_activity->save();	
+		return $comment_activity;
 	}
 
 	function newPost($post_details){

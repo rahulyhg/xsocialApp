@@ -16,7 +16,7 @@ class page_xsocialApp_page_activitypages_share extends Page{
 
 		$js=array(
 				$this->js()->univ()->successMessage('You Just Shared An Activity'),
-				$this->js()->_selector('#a6b94fb3___activity_xsocialapp_view_activity_list')->prepend($new_shared_activity_html)
+				$this->js()->_selector('.activity-list')->prepend($new_shared_activity_html)
 			);
 		echo $this->js(true,$js);
 		exit;
