@@ -27,9 +27,7 @@ function init(){
 	else
 		$this->add('View')->set($count);
 
-	$this->js('click',$p->showJS($this));
+	$this->js('click',$p->showJS($this))->_selector('.message-toolbar-li');
 
-
-	
 	}
 }
