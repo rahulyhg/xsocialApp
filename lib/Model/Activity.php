@@ -3,6 +3,7 @@ namespace xsocialApp;
 
 class Model_Activity extends \Model_Table{
 	public $table="xsocialApp_activities";
+	public $member_join=null;
 	function init(){
 		parent::init();
 
@@ -27,7 +28,7 @@ class Model_Activity extends \Model_Table{
 			return $m->refSQL('from_member_id')->fieldQuery('profile_pic');
 		});
 
-		$member= $this->leftJoin('xsocialApp_members','from_member_id');
+		$this->member_join = $member= $this->leftJoin('xsocialApp_members','from_member_id');
 		$member->addField('member_gender','gender');
 
 		$this->addExpression('like_status')->set(function($m,$q){
@@ -55,6 +56,32 @@ class Model_Activity extends \Model_Table{
 		$this->addHook('beforeSave',$this);
 		$this->addHook('afterLoad',$this);
 		
+	}
+
+	function whoLikeText(){
+		// $text=" ";
+		// if(!$this->loaded())
+		// 	throw $this->exception('Unable To Determine Activity, Please call on loaded model of Activity');
+		// $this->addCondition('activity_type','Like');
+		// $i=1;
+		// foreach ($this as $junk) {
+		// if($i>5) continue;
+		// $text.=$this->ref('from_member_id')->get('name')." " ;
+		// $i++;
+		// }
+		// return $text;
+		$like_activities  = $this->add('xsocialApp/Model_Activity');
+		$like_activities->addCondition('activity_type','Like');
+		$like_activities->addCondition('related_activity_id',$this->id);
+
+		$likers = $like_activities->_dsql()->del('fields')->field($like_activities->dsql()->expr('GROUP_CONCAT(concat("<a href=\"index.php?subpage=xsocial-profile&profile_of=",'.$this->member_join->table_alias.'.id,"\">",'.$this->member_join->table_alias.'.first_name," ",'.$this->member_join->table_alias.'.last_name,"</a>"))'))->getOne();
+
+		if(($likers_count = count(explode(",", $likers))) > 2){
+			return ($likers_count." liked this");
+		}
+
+		return $likers;
+
 	}
 
 	function afterLoad(){
@@ -201,6 +228,7 @@ class Model_Activity extends \Model_Table{
 		return true;
 
 	}
+
 
 	function loadComments($for_activity_id){
 		$this->addCondition('related_activity_id',$for_activity_id)
