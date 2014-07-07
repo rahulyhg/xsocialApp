@@ -8,7 +8,8 @@ class View_Server_Topbar extends \View{
 		// echo "<pre>";
 		// print_r($_SESSION);
 		// echo "</pre>";
-		$this->add('View',null,'member_login')->set($this->api->cu_name);//add current login member name 
+
+		$this->add('View',null,'member_login')->set("Welcome ".$this->api->cu_name);//add current login member name 
 
 		$btn = $this->add('Button',null,'logout')->set('logout')->setAttr(array('title'=>'Logout','data-toggle'=>'tooltip', 'data-placement'=>'bottom'));
 		if($btn->isClicked()){
