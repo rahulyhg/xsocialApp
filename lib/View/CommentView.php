@@ -36,8 +36,8 @@ class View_CommentView extends \View{
 		if($this->comment_array['from_member_id']==$this->api->xsocialauth->model->id){
 			// throw new \Exception("Error Processing Request", 1);
 			
-			$this->add('xsocialApp/View_Activity_EditActivity',array('activity_id'=>$this->comment_array['id']),'edit');
-			$this->add('xsocialApp/View_Activity_DeleteActivity',array('activity_id'=>$this->comment_array['id']),'delete');
+			// $this->add('xsocialApp/View_Activity_EditActivity',array('activity_id'=>$this->comment_array['id']),'edit');
+			// $this->add('xsocialApp/View_Activity_DeleteActivity',array('activity_id'=>$this->comment_array['id']),'delete');
 			
 		}else{
 			$this->template->tryDel('edit_delete_block');

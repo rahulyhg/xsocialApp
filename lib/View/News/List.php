@@ -14,6 +14,13 @@ class View_News_List extends \CompleteLister{
 		}
 	}
 
+	// function setModel($model){
+	// 	parent::setModel($model);
+	// 	throw new \Exception($model['name'], 1);
+		
+	// 	$this->template->setHtml('news',$model['name']);
+	// }
+
 
 	
 	

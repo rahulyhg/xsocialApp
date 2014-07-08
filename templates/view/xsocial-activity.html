@@ -66,41 +66,32 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<div class="row">
-						
-						<div class="col-md-1 glyphicon" >
-						</div>
 						<div>
 							<?like_button?>
 							<a href='#likeAction' id='like_for_<?$activity_id?>' onclick='$(this).univ().like_me(<?$activity_id?>)'><?like_status?>Oops<?/like_status?></a>
 							<?/like_button?>
 						</div>
-
-					</div>
 				</div>
-
 				<div class="col-md-4">
-					<div class="row">
-						<div class="col-md-1 ">
-						</div>
-						<div>
-							<?share_button1?>
+					<div>
+						<?share_button1?>
 							<a href='#shareAction' onclick="$(this).univ().share_me(<?$activity_id?>);" class="glyphicon glyphicon-share" data-toggle="tooltip" title="Share"  data-placement="bottom">Share</a>
 							<?/share_button1?>
 						</div>
-					</div>	
 				</div>
+				<div class="col-md-4">
+					<div>
+					<a class='glyphicon glyphicon-comment show-tooltip' onclick='javascript:$(this).univ().showCommentsForm(<?$activity_id?>);' ata-toggle="tooltip" title="Comment "  data-placement="bottom">Comment</a>
+				</div>
+				</div>	
 			</div>
-			<div class="row">
+			<div class="row commentor-block" >
 				<div class="col-md-4"><?activity_like_list?>activity_like_list<?/activity_like_list?></div>
 				<div class="col-md-4"><?activity_share_list?><?/activity_share_list?></div>
 			</div>
 			
 			<?comment_block_area?>
 			<div class="row" style="margin-top:3px;">
-				<div>
-					<a class='glyphicon glyphicon-comment show-tooltip' onclick='javascript:$(this).univ().showCommentsForm(<?$activity_id?>);' ata-toggle="tooltip" title="Comment "  data-placement="bottom">Comment</a>
-				</div>
 				<div class="col-md-12 comment-block comments-block-<?$activity_id?>">
 					<?$comments_block?>
 				</div>

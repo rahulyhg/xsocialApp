@@ -17,37 +17,32 @@
 		position:absolute;
 		background-color:#f2f2f2;
 	}
+	
 </style>
-<div id='<?$_name?>'>
+<div id='<?$_name?>' class="main_div">
 	<?$Content?>
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3>News
-			<span class="panel-title">
-			<a href='#' onclick="$(this).univ().subscribe_news();">
-				( Manage )
-			</a>
-			</span>
-			</h3>
-		</div>
-		<div class="panel-body">
-			<div id='<?$_name?>_carousel' class='<?$class?> newscarousel slide' data-ride="carousel">
+			
+	<div id='<?$_name?>_carousel' class='<?$class?> newscarousel slide' data-ride="carousel">
 				<div class='carousel-inner'>
 					<?rows?>
 					<?row?>
+					
 					<div class='item <?$active_class?>'>
-						<a  href='<?$link?>' target='_blank' >
+					<div class="row">
+						<div class="col-md-4 col-sm-4 col-lg-4">
+							<a  href='<?$link?>' target='_blank' >
 							<img   style="width:100%"; src='<?new_img?>logo.png<?/new_img?>'/>
-						</a>
-						<div>
-							<?$name?>
+						</a>	
+						</div>
+						<div class="col-md-8 col-sm-8 col-lg-8">
+							<div>
+								<?name?>hi<?/name?>
+							</div>	
 						</div>
 					</div>
+				</div>
 					<?/row?>
 					<?/rows?>
 				</div>
 			</div>
-		</div>
-	</div>
-	
 </div>

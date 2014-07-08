@@ -7,7 +7,6 @@ class Model_NewsCategory extends \Model_Table {
 
 		$this->addField('name');
 		$this->hasMany('xsocialApp/News','news_catgory_id');
-		$this->hasMany('xsocialApp/NewsCategorySubscribeMember','news_catgory_id');
 		$this->add('dynamic_model/Controller_AutoCreator');
 	}
 

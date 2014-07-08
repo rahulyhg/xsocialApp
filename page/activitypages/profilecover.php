@@ -16,6 +16,7 @@ class page_xsocialApp_page_activitypages_profilecover extends Page{
         }
 
 		$images=$this->add('xsocialApp/Model_Images');
+		// throw new \Exception("Error Processing Request", 1);
 		$images->addCondition('member_id',$_GET['member_id']);
 		
 		$form=$this->add('Form');

@@ -34,7 +34,6 @@ class Model_MemberAll extends \Model_Table{
 		$this->hasMany('xsocialApp/Message','message_to_member_id');
 		$this->hasMany('xsocialApp/PointTransaction','member_id');
 		$this->hasMany('xsocialApp/MemberAttendanceLog','member_id');
-		$this->hasMany('xsocialApp/NewsCategorySubscribeMember','member_id');
 
 		$this->addExpression('name')->set('concat(first_name," ",last_name)');
 
@@ -109,14 +108,7 @@ class Model_MemberAll extends \Model_Table{
 		return $followings_array;
 	}
 
-	function getSubscribedCategory(){
-		$categories = $this->ref('xsocialApp/NewsCategorySubscribeMember');
-		$categories_array= array(0);
-		foreach ($categories as $category) {
-			$categories_array[] = $categories['news_category_id'];
-		}
-		return $categories_array;
-	}
+	
 
 	function is_registered($userName){
 		$member=$this->add('xsocialApp/Model_MemberAll');
