@@ -148,6 +148,11 @@ class Model_MemberAll extends \Model_Table{
 		$this['gender']=$visitorInfo['gender'];
 		$this['date_of_birth']=$visitorInfo['DOB'];
 		$this['referId']=$visitorInfo['referId'];
+
+		if($visitorInfo['gender']=='female')
+			$this['profile_pic_id']='258';
+		else
+			$this['profile_pic_id']='260';
 		if($this->save())
 			return true;
 		else
@@ -261,7 +266,6 @@ class Model_MemberAll extends \Model_Table{
 		$member->addCondition('activation_code',$activation_code);
 		$member->tryLoadAny();
 		if($member->loaded()){
-			$this->api->exec_plugins('OnVerificationRefeCheck',array($member->id,$member));
 			$member['is_verify']= true;
 			$this->api->exec_plugins('verifymember_register',array($member->id,$member));
 			$member->save();

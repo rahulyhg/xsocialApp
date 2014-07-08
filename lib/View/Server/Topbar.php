@@ -9,13 +9,14 @@ class View_Server_Topbar extends \View{
 		// print_r($_SESSION);
 		// echo "</pre>";
 
-		$this->add('View',null,'member_login')->set("Welcome ".$this->api->cu_name);//add current login member name 
+		$this->add('View',null,'member_login')->set("Welcome ".$this->api->xsocialauth->model['name']);//add current login member name 
 
-		$btn = $this->add('Button',null,'logout')->set('logout')->setAttr(array('title'=>'Logout','data-toggle'=>'tooltip', 'data-placement'=>'bottom'));
-		if($btn->isClicked()){
-			// throw new \Exception($btn->js('click'));
+		$v = $this->add('View',null,'logout')->setHtml('<i class="glyphicon glyphicon-off"></i>')->setAttr(array('title'=>'Logout','data-toggle'=>'tooltip', 'data-placement'=>'bottom'));
+		$v->js('click',$this->js()->reload(array('logout'=>1)));
+		if($_GET['logout']){
 			$this->api->xsocialauth->logout();
 			$this->api->redirect($this->api->url(null,array('subpage'=>'xsocial-logout')));
+			
 		}
 
 		$this->add('xsocialApp/View_Search',null,'search');

@@ -19,15 +19,22 @@
 	}
 </style>
 
-<div id='<?$_name?>'>
-	<?$Content?>
-	<div class="panel panel-primary">
-  		<div class="panel-heading">
-    		<h3 class="panel-title"><a href='index.php?epan=web&subpage=xsocial-friends' target='_blank'>Friends</a><span class="badge badge-info"><?$count?></span>
-    		</h3>
-  		</div>	
- 		<div class="panel-body">
-			<?rows?>
+<div id='<?$_name?>' class="main-div">
+<?$Content?>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a href='index.php?epan=web&subpage=xsocial-friends' target='_blank' ><span data-toggle="tooltip" title="See All Friends" class="show-tooltip" data-placement="bottom">Friends</span></a>
+        <span class="badge badge-info"><?$count?></span>
+
+        <a id="show-hide" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?$_id?>" class="pull-right"><span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne<?$_id?>" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <?rows?>
 				<?row?>
 			
 				<a href='<?$url?>'>
@@ -37,10 +44,13 @@
 					<!-- <div id="picdiv">				
 					</div> -->
 				</a>
-		<?/row?>
-		<?/rows?>			
-  		</div>
-	</div>
+			<?/row?>
+		<?/rows?>
+      </div>
+    </div>
+  </div>
+  </div>
+	
 	
 		</div>
 
@@ -53,13 +63,13 @@ $('.pic').mousemove(function (e){
 	$('#picdiv').css('left',e.clientX+10).css('top',e.clientY);
 }).mouseout(function(){
 	$('#picdiv').hide();
-});
+}); 
 
 </script>	 -->
 
 <script type="text/javascript"> 
 
 	$(document).ready(function(){
-		$('#friend-pic').tooltip();
+		$('#friend-pic, .show-tooltip').tooltip();
 	});
 </script>

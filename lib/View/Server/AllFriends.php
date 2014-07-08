@@ -26,6 +26,7 @@ class View_Server_AllFriends extends \View{
 
 		$act_lister->template->trySet('count',$count);
 
+
 	}
 
 	

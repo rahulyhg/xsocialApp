@@ -1,6 +1,9 @@
 <style>
 .atk-buttons{
 }
+.top-bar-badge .badge {
+	background-color: transparent;
+}
 	.topbar-bg{
 		background-color:#006093;
 		/*#3b6c36;*/
@@ -122,27 +125,27 @@
 		    </form> -->			
 		</div>
 
-		<div class="col-sm-3 min-height " >
+		<div class="col-sm-3 min-height top-bar-badge " >
 			<nav>	
 				<ul >
 					<li class='req-toolbar-li'>
-					<div style="width:50%;" class="text-center">
+					<div class="text-center">
 						<span data-toggle="tooltip" data-placement="bottom" class="badge function-icon default-height" title="Buddy Request"><img src="epans/web/social/friend_request.png" class="glyphicon friends function-icon"><?friends?><?/friends?></span>  	
-						<div><small>Request</small></div>	
+						<div class="text-center"><small>Request</small></div>	
 					</div>
 		  			</li>
 
 					<li class='notification-toolbar-li'>
-					<div style="width:50%" class="text-center">
+					<div  class="text-center">
 						<span data-toggle="tooltip" data-placement="bottom" class="badge glyphicon function-icon default-height" title="Notification"><img src="epans/web/social/friends.png" class="glyphicon friends function-icon"><?notification?>  <?/notification?></span>
-						<div><small>Notify</small>
+						<div class="text-center"><small >Notify</small>
 						</div>
 					</div>	
 		  			</li>
 
 					<li >
 					<div>
-						<div style="width:50%" class="text-center">
+						<div  class="text-center">
 						<span title="Reward Points" data-toggle="tooltip" data-placement="bottom" class="badge function-icon default-height" ><img src="epans/web/social/coins.png" class="glyphicon friends function-icon"/><?coin?>0<?/coin?></span>
 						</div>
 						<div class="text-center"><small>
@@ -153,13 +156,13 @@
 
 					<li class="message-toolbar-li">	
 					<div>
-						<div style="width:80%" class="text-center">
+						<div  class="text-center">
 						<span title="Message" data-toggle="tooltip" data-placement="bottom" class="badge function-icon default-height"><img src="epans/web/social/message.png" class="glyphicon friends function-icon">
 						<div style="margin-top:10%;">	
 						<?message_count?>0<?/message_count?>
 						</div>
 						</span>
-						<div><small>Message</small>
+						<div class="text-center"><small>Message</small>
 						</div>
 					</div>
 						
@@ -186,10 +189,12 @@
 				</div>
 
 				<div class="btn">
-					<a href="?epan=web&subpage=xsocial-profile" title="Logout" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i class="glyphicon glyphicon-off"></i></a>
+				<?logout?>
+					<a href="#" title="Logout" data-toggle="tooltip" data-placement="bottom" style="text-decoration:none;color:white;"><i></i></a>
+				<?/logout?>
 				</div>
 
-					<?logout?>logout<?/logout?>			
+								
 					<span style="display:none;"><?$setting?></span>	
 				</div>		
 			</div>

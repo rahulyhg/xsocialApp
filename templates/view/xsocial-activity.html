@@ -7,67 +7,63 @@
 		width:auto;
 		max-width: 100%;
 	}
-
+	.well-sm{
+		background-color: white;
+	}
 </style>
 
-<div id='activity_view_<?$activity_id?>' class='well well-sm <?$class?>' visibility="<?$visibility?>">
+<div id='activity_view_<?$activity_id?>' class='page page-header well well-sm <?$class?>' visibility="<?$visibility?>">
 	<div class="row">
-		
 		<div class="col-md-2">
 			<?profile_pic?><?/profile_pic?>
 		</div>
 
 		<div class="col-md-10 pull-left">
 			<div class="row">
-				<div class="col-md-6 profilename">
+				<div class="col-md-9 profilename">
 					<b><?activity?><?/activity?></b>
 				</div>
 				<?edit_delete_block?>
-				<div class="col-md-3 profilename">
+				<div class="col-md-3 text-right">
 					<b class="activity-cursor">
 						<?edit?>
-						<a href='#removeAction' id='remove_for_<?$activity_id?>' onclick='$(this).univ().edit_me(<?$activity_id?>)'>Edit</a>
+						<a href='#removeAction' id='remove_for_<?$activity_id?>' onclick='$(this).univ().edit_me(<?$activity_id?>)'><span class="glyphicon glyphicon-pencil show-tooltip" data-toggle="tooltip" title="Edit"  data-placement="bottom"></span></a>
 						<?/edit?>
 					</b>
-				</div>
-				<div class="col-md-3 profilename">
 					<b class="activity-cursor"><?delete_button?>
-							<a href='#removeAction' id='remove_for_<?$activity_id?>' onclick='$(this).univ().remove_me(<?$activity_id?>)'>Delete</a>
+							<a href='#removeAction' id='remove_for_<?$activity_id?>' onclick='$(this).univ().remove_me(<?$activity_id?>)'><span class="glyphicon glyphicon-remove show-tooltip" data-toggle="tooltip" title="Delete"  data-placement="bottom"></span></a>
 							<?/delete_button?>
 					</b>
 				</div>
+				
+			
+				
 				<?/edit_delete_block?>
 			</div>
 
 			
 			<div class="row">
-				<div class="col-md-12 text-success">
-					<div class='activity-<?$activity_id?>-text'>
+				<div class="col-md-12">
+					<div class='activity-<?$activity_id?>-text ' >
 						<?activity_detail?><?/activity_detail?>
 					</div>
-					<div class="associate-img" >
-						<?associated_pic_or_video_block?>
-					</div>
+					
 				</div>
 			</div>
 				
 			<div class="row">
+				<?img_block?>
 				<div class="col-md-12 associate-img">
 					<img src="<?$img?>">
+				</div>
+				<?/img_block?>
+
+				<?video_block?>
+				<div class="col-md-12 associate-img">
 					<?video_url?><?/video_url?>
 				</div>
+				<?/video_block?>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<?video_url?><?/video_url?>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 associate-video">
-					<?video_url?><?/video_url?>
-				</div>
-			</div>
-			<?/associated_pic_or_video_block?>
 			<div class="row">
 				<div class="col-md-4">
 					<div class="row">
@@ -85,13 +81,11 @@
 
 				<div class="col-md-4">
 					<div class="row">
-						<div class="col-md-1 glyphicon glyphicon-share">
+						<div class="col-md-1 ">
 						</div>
 						<div>
 							<?share_button1?>
-							<a href='#shareAction' onclick="$(this).univ().share_me(<?$activity_id?>);">
-								Share
-							</a>
+							<a href='#shareAction' onclick="$(this).univ().share_me(<?$activity_id?>);" class="glyphicon glyphicon-share" data-toggle="tooltip" title="Share"  data-placement="bottom">Share</a>
 							<?/share_button1?>
 						</div>
 					</div>	
@@ -99,13 +93,13 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4"><?activity_like_list?>activity_like_list<?/activity_like_list?></div>
-				<div class="col-md-4"><?activity_share_list?>activity_share_list<?/activity_share_list?></div>
+				<div class="col-md-4"><?activity_share_list?><?/activity_share_list?></div>
 			</div>
 			
 			<?comment_block_area?>
 			<div class="row" style="margin-top:3px;">
 				<div>
-					<button class='btn btn-default btn-sm' onclick='javascript:$(this).univ().showCommentsForm(<?$activity_id?>);'>Comments</button>
+					<a class='glyphicon glyphicon-comment show-tooltip' onclick='javascript:$(this).univ().showCommentsForm(<?$activity_id?>);' ata-toggle="tooltip" title="Comment "  data-placement="bottom">Comment</a>
 				</div>
 				<div class="col-md-12 comment-block comments-block-<?$activity_id?>">
 					<?$comments_block?>
@@ -116,3 +110,10 @@
 	</div>
 	
 </div>
+
+<script type="text/javascript"> 
+
+	$(document).ready(function(){
+		$('.show-tooltip').tooltip();
+	});
+</script>
