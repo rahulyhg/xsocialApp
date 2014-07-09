@@ -4,7 +4,7 @@ namespace xsocialApp;
 class View_NewCommentForm extends \View{
 	function init() {
 		parent::init();		
-
+		$this->rename('ncf');
 		$new_comment = $this->add('xsocialApp/Model_Activity');
 		$new_comment->getElement('activity_detail')->caption('comment');
 		$new_comment->getElement('img_id')->caption('image');
