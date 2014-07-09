@@ -6,7 +6,8 @@ class View_NewCommentForm extends \View{
 		parent::init();		
 
 		$new_comment = $this->add('xsocialApp/Model_Activity');
-
+		$new_comment->getElement('activity_detail')->caption('comment');
+		$new_comment->getElement('img_id')->caption('image');
 		$form=$this->add('Form');
 		$form->setModel($new_comment,array('activity_detail','img_id'));
 		$form->addField('hidden','commented_activity_id')->addClass('comment_activity_id_input');
