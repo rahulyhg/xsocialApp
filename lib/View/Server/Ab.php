@@ -16,7 +16,7 @@ class View_Server_Ab extends \View{
 			$lister = $this->add('xsocialApp/View_Lister_Ab');
 			$lister->setModel($images);
 			$lister->addClass('.carousel-'.$i);
-			$this->js(true)->univ()->myCarousel('.carousel-'.$i,$add_blocks['add_rotate_timing']*1000);
+			$this->js(true)->carousel('.carousel-'.$i,$add_blocks['add_rotate_timing']*1000);
 			$i++;
 		}
 	}

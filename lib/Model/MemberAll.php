@@ -418,7 +418,7 @@ class Model_MemberAll extends \Model_Table{
 		$activity['activity_type']='updateCoverPage';
 		$activity->save();
 
-		return true;
+		return $activity;
 
 	}
 

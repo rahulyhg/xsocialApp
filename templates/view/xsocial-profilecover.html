@@ -169,7 +169,6 @@ span.info {
 
 
 <script type="text/javascript">
-
 function submit_image(){
   $.ajax({
     url: 'index.php?epan=web&subpage=xsocial-crop&cut_page=1&crop_image=1',
@@ -177,13 +176,13 @@ function submit_image(){
     success: function(res){
     $('#myModal').modal('hide');
       // document.getElementById('imgbadge').innerHTML = location.reload(true);
-      location.reload();  
       eval(res);      
+      // location.reload();  
     },
     error: function(res){  
     }
   });
-
+  
 }
   $(document).ready(function(){
     $("#timeline").mouseover(function(){

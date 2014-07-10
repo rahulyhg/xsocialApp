@@ -30,10 +30,12 @@ class page_xsocialApp_page_activitypages_profilecover extends Page{
 
 			$form->update();
 
-			if($this->api->xsocialauth->model->updateCoverPage($form->getAllFields()))
+			if($activity=$this->api->xsocialauth->model->updateCoverPage($form->getAllFields()))
+				$new_activity = $this->add('xsocialApp/View_Activity',array('activity_id'=>$activity->id,'activity_array'=>$activity));
+				$new_activity_html = $new_activity->getHTML();
 				$form->js(null,array(
 								$this->js()->_selector('.profilecover')->trigger('reload'),
-								$this->js()->_selector('.activity')->trigger('reload')
+								$this->js()->_selector('.activity-list')->prepend($new_activity_html)
 
 							))->univ()->closeDialog()->execute();
 		}
