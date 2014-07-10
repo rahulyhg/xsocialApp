@@ -10,7 +10,8 @@ class View_Server_Register extends \View{
 		$form->addField('line','first_name')->validateNotNull('Required Field');
 		$form->addField('line','last_name')->validateNotNull('Required Field');
 		$date=$form->addField('DatePicker','DOB')->validateNotNull('Required Field');
-		
+		// $date->options=array('minDate'=>'01/01/1950','maxDate'=>'01/01/2004');
+		$date->options=array('yearRange'=>"1950:2004");
 		$form->addField('Radio','gender')->setValueList(array('Male'=>'Male','Female'=>'Female'))->validateNotNull('Required Field');
 		$form->addField('line','emailId','E-mail')->validateNotNull()->validateField('filter_var($this->get(), FILTER_VALIDATE_EMAIL)');
 		$form->addField('password','password')->validateNotNull('Required Field');
