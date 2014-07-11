@@ -28,11 +28,11 @@
         <a href='index.php?epan=web&subpage=xsocial-friends' target='_blank' ><span data-toggle="tooltip" title="See All Friends" class="show-tooltip" data-placement="bottom">Friends</span></a>
         <span class="badge badge-info"><?$count?></span>
 
-        <a id="show-hide" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?$_id?>" class="pull-right"><span class="glyphicon glyphicon-chevron-down"></span>
+        <a id="show-hide" data-toggle="collapse" data-parent="#accordion" href="#friends<?$_name?>" class="pull-right"><span class="glyphicon glyphicon-chevron-down"></span>
         </a>
       </h4>
     </div>
-    <div id="collapseOne<?$_id?>" class="panel-collapse collapse in">
+    <div id="friends<?$_name?>" class="panel-collapse collapse">
       <div class="panel-body">
         <?rows?>
 				<?row?>
@@ -71,5 +71,6 @@ $('.pic').mousemove(function (e){
 
 	$(document).ready(function(){
 		$('#friend-pic, .show-tooltip').tooltip();
+		// $('#friends<?$_name?>').collapse();
 	});
 </script>
