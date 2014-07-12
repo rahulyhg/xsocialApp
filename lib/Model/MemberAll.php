@@ -34,7 +34,6 @@ class Model_MemberAll extends \Model_Table{
 		$this->hasMany('xsocialApp/Message','message_to_member_id');
 		$this->hasMany('xsocialApp/PointTransaction','member_id');
 		$this->hasMany('xsocialApp/MemberAttendanceLog','member_id');
-		$this->hasMany('xsocialApp/NewsCategorySubscribeMember','member_id');
 
 		$this->addExpression('name')->set('concat(first_name," ",last_name)');
 
@@ -109,14 +108,7 @@ class Model_MemberAll extends \Model_Table{
 		return $followings_array;
 	}
 
-	function getSubscribedCategory(){
-		$categories = $this->ref('xsocialApp/NewsCategorySubscribeMember');
-		$categories_array= array(0);
-		foreach ($categories as $category) {
-			$categories_array[] = $categories['news_category_id'];
-		}
-		return $categories_array;
-	}
+	
 
 	function is_registered($userName){
 		$member=$this->add('xsocialApp/Model_MemberAll');
@@ -148,6 +140,11 @@ class Model_MemberAll extends \Model_Table{
 		$this['gender']=$visitorInfo['gender'];
 		$this['date_of_birth']=$visitorInfo['DOB'];
 		$this['referId']=$visitorInfo['referId'];
+
+		if($visitorInfo['gender']=='female')
+			$this['profile_pic_id']='258';
+		else
+			$this['profile_pic_id']='260';
 		if($this->save())
 			return true;
 		else
@@ -261,7 +258,6 @@ class Model_MemberAll extends \Model_Table{
 		$member->addCondition('activation_code',$activation_code);
 		$member->tryLoadAny();
 		if($member->loaded()){
-			$this->api->exec_plugins('OnVerificationRefeCheck',array($member->id,$member));
 			$member['is_verify']= true;
 			$this->api->exec_plugins('verifymember_register',array($member->id,$member));
 			$member->save();
@@ -422,7 +418,7 @@ class Model_MemberAll extends \Model_Table{
 		$activity['activity_type']='updateCoverPage';
 		$activity->save();
 
-		return true;
+		return $activity;
 
 	}
 

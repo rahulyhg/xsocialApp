@@ -1,15 +1,23 @@
-<div id="<?$_name?>" class=' <?$class?>'>
-	<div class="row" style="margin-top:3px;">
+<div id="activity_view_<?$activity_id?>" class=' <?$class?>'>
+	<div class="row commentor-block" style="margin-top:3px;">
 		<div class='col-md-2'>
-
-			<div class="img-thumbnail" ><?profile_pic?>profile_pic<?/profile_pic?>
+			<div ><?profile_pic?>profile_pic<?/profile_pic?>
 			</div>			
 		</div>
 		<div class='col-md-10'>
 			<div class='row'>
-				<div class='col-md-12'><span><b><?from_member?>commentor_name<?/from_member?></b></span>&nbsp;<?$activity_detail?>
+				<div class='col-md-12'>
+				<span>
+				<b>
+				<?from_member?>commentor_name<?/from_member?>
+				</b>
+				</span>
+				<div id='comment-text-<?$activity_id?>'><?$activity_detail?></div>
 				</div>
-				<div><img src='<?$img?>' width="100px" height="100px"/></div>
+				<?comment_img_block?>
+				<div>
+				<img src='<?$img?>' width="100px" height="100px"/></div>
+				<?/comment_img_block?>
 			</div>
 		
 			<div class='row'>
@@ -19,8 +27,17 @@
 							<?/like_button?>
 				</div>
 			<?edit_delete_block?>
-				<div class='col-md-2 activity-cursor'><?edit?>Edit<?/edit?></div>
-				<div class='col-md-2 activity-cursor'><?delete?>Delete<?/delete?></div>
+				<div class="col-md-3 text-right">
+					<b class="activity-cursor">
+						<?edit?>
+						<a href='#editAction' id='edit_for_<?$activity_id?>' onclick='$(this).univ().editComment(<?$activity_id?>)'><span class="glyphicon glyphicon-pencil show-tooltip" data-toggle="tooltip" title="Edit"  data-placement="bottom"></span></a>
+						<?/edit?>
+					</b>
+					<b class="activity-cursor"><?delete_button?>
+							<a href='#removeAction' id='remove_for_<?$activity_id?>' onclick='$(this).univ().remove_me(<?$activity_id?>)'><span class="glyphicon glyphicon-remove show-tooltip" data-toggle="tooltip" title="Delete"  data-placement="bottom"></span></a>
+							<?/delete_button?>
+					</b>
+				</div>
 			<?/edit_delete_block?>
 			</div>
 		</div>

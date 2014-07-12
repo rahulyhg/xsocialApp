@@ -12,7 +12,6 @@ class Plugins_OnVerificationPoints extends \componentBase\Plugin{
 	}
 
 	function verifymember_register($obj,$member_id,$member){
-		throw $this->exception('I MRegister', 'ValidityCheck')->setField('FieldName');
 
 		$point=$this->add('xsocialApp/Model_Point');
 		$point->addCondition('name','OnVerification');

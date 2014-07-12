@@ -2,7 +2,7 @@
 
 namespace xsocialApp;
 
-class View_Lister_AddBlock extends \CompleteLister{
+class View_Lister_Ab extends \CompleteLister{
 	public $is_active_marked=false;
 
 	function formatRow(){
@@ -32,7 +32,7 @@ class View_Lister_AddBlock extends \CompleteLister{
 				)
 			)->setParent($l);
 
-		return array('view/xsocial-addblock');
+		return array('view/xsocial-ab');
 
 	}
 	

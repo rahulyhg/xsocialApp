@@ -1,6 +1,6 @@
  <?php
 
-class page_xsocialApp_page_activitypages_createpostcard extends Page{
+class page_xsocialApp_page_activitypages_cpc extends Page{
 	function init() {
 		parent::init();
 
@@ -20,7 +20,7 @@ class page_xsocialApp_page_activitypages_createpostcard extends Page{
 		$postcard_grid->setModel($activity->getPostCard($this->api->xsocialauth->model->id), array('name','img_id'));
 			
 		if($form->isSubmitted()){
-			$post_card->createPostCard($form['name'],'New Post Card Created',$form['img_id']);	
+			$post_card->createPostCard($form['name'],null,$form['img_id']);	
 			$js=array(
 				$this->api->js()->univ()->successMessage('Post Card Created Succesfully'),
 				$form->js()->_selector('.activity')->trigger('reload')								

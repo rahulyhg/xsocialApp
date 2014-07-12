@@ -3,11 +3,13 @@
 namespace xsocialApp;
 
 class View_FriendList_AllFriends extends \CompleteLister{
-
+public $profile_pic;
 
 	function formatRow(){
 		$this->current_row_html['url']=$this->api->url(null,array('subpage'=>'xsocial-profile','profile_of'=>$this->model->id));
 	}
+
+	
 	
 
 	

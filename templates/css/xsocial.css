@@ -86,3 +86,14 @@
 	max-width: 100%;
 	width:auto;
 }
+
+.main-div{
+	margin-bottom:10px;
+}
+/*left and right side add fixed*/
+
+/*commentor div*/
+.commentor-block{
+	background-color:#f5f5f5;
+	padding:3px;
+}

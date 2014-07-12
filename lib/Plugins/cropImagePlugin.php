@@ -23,17 +23,39 @@ class Plugins_cropImagePlugin extends \componentBase\Plugin{
 			$src = getcwd() . $this->api->xsocialauth->model['timeline_pic'];
 			chdir($old_dir);
 
-			$img_r = imagecreatefromjpeg($src);
+			$aSize = getimagesize($src);
+			switch ($aSize[2]) {
+				case IMAGETYPE_JPEG:
+					$type='jpeg';
+					break;
+				case IMAGETYPE_PNG:
+					$type='png';
+					$jpeg_quality=0;
+					break;
+				case IMAGETYPE_GIF:
+					$type='gif';
+					break;
+				default:
+					# code...
+					break;
+			}
+			$func = "imagecreatefrom".$type;
+			$img_r = $func($src);
 			$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 			
 			imagecopyresampled($dst_r,$img_r,0,0,$_GET['x'],$_GET['y'],
 			    $targ_w,$targ_h,$_GET['w'],$_GET['h']);
 
-			header('Content-type: image/jpeg');
-			imagejpeg($dst_r, $src, $jpeg_quality);
+			// header('Content-type: image/jpeg');
+			
+			$func="image".$type;
+			
+
+			$func($dst_r, $src, $jpeg_quality,null);
 			
 			// $this->js()->reload()->execute();				
-			$this->js(true)->_selector('.profilecover')->trigger('reload')->execute();
+			echo $this->js(true)->_selector('.profilecover')->trigger('reload');
+			exit;
 		}
 	}
 	

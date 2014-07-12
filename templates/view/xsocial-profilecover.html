@@ -116,21 +116,20 @@ span.info {
                 
                 <div class="col-md-8 text-center cover-btn-margin">
                   <div id="coverbtn" class="row cover-btn">
-                    <div class="col-md-2 text-left">
+                    <div class="col-md-3 text-left">
                       <?$profile_edit?>
+                      <?$crop_pic_btn?>
                     </div>
-                    <div class="col-md-2">
-                        <?$crop_pic_btn?>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?$friend_request_btn?>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <?$edit_btn?>
+                    </div> 
+                    <div class="col-md-3 cover_crop_btn " data-toggle="modal" data-target="#myModal">
+                        <?$crop_btn?>
+                      </div>                  
                     </div>
-                    <div class="col-md-2 cover_crop_btn " data-toggle="modal" data-target="#myModal">
-                      <?$crop_btn?>
-                    </div>                  
                   </div>
                 </div>
                 <!-- <div class="col-md-3"></div>
@@ -151,7 +150,7 @@ span.info {
       </div>
       <div class="modal-body">
         <div class="crop_cover_pic">
-          <img width="1162px" id="target" src="<?$timeline_pic?>" />
+          <img width="100%" id="target" src="<?$timeline_pic?>" />
           <form id='crop_form' onsubmit="javascript: return false;" method="post" action="?epan=web&subpage=xsocial-crop">
               <input id="x" name="x" value="" type="hidden"/>
               <input id="y" name="y" value="" type="hidden"/>
@@ -170,22 +169,20 @@ span.info {
 
 
 <script type="text/javascript">
-
 function submit_image(){
   $.ajax({
     url: 'index.php?epan=web&subpage=xsocial-crop&cut_page=1&crop_image=1',
     data: $('#crop_form').serialize(),
     success: function(res){
     $('#myModal').modal('hide');
-
       // document.getElementById('imgbadge').innerHTML = location.reload(true);
-      location.reload();  
       eval(res);      
+      // location.reload();  
     },
-    error: function(res){
+    error: function(res){  
     }
   });
-
+  
 }
   $(document).ready(function(){
     $("#timeline").mouseover(function(){

@@ -24,8 +24,10 @@ class View_CommentView extends \View{
 	function recursiveRender() {
 		$this->template->trySet('from_member',$this->comment_array['from_member']);
 		$this->template->trySet('activity_detail',$this->comment_array['activity_detail']);
-
-		$this->template->trySet('img',$this->comment_array['img']);
+		if($this->comment_array['img'])
+			$this->template->trySet('img',$this->comment_array['img']);
+		else
+			$this->template->tryDel('comment_img_block');
 		$this->template->set('activity_id',$this->comment_array['id']);
 		$this->template->set('like_status',($this->comment_array['like_status']=='Y'?'UnLike':'Like'));
 		
@@ -34,8 +36,8 @@ class View_CommentView extends \View{
 		if($this->comment_array['from_member_id']==$this->api->xsocialauth->model->id){
 			// throw new \Exception("Error Processing Request", 1);
 			
-			$this->add('xsocialApp/View_Activity_EditActivity',array('activity_id'=>$this->comment_array['id']),'edit');
-			$this->add('xsocialApp/View_Activity_DeleteActivity',array('activity_id'=>$this->comment_array['id']),'delete');
+			// $this->add('xsocialApp/View_Activity_EditActivity',array('activity_id'=>$this->comment_array['id']),'edit');
+			// $this->add('xsocialApp/View_Activity_DeleteActivity',array('activity_id'=>$this->comment_array['id']),'delete');
 			
 		}else{
 			$this->template->tryDel('edit_delete_block');

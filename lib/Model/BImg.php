@@ -2,12 +2,12 @@
 
 namespace xsocialApp;
 
-class Model_BlockImages extends \Model_Table{
-	var $table="xsocial_blockimages";
+class Model_BImg extends \Model_Table{
+	var $table="xsocial_bimg";
 	function init(){
 
 		parent::init();
-		$this->hasOne('xsocialApp/AddBlock','block_id');
+		$this->hasOne('xsocialApp/Ab','block_id');
 
 		$this->add('filestore/Field_Image','blockimg_id');
 		$this->addField('link')->caption('Web Link');

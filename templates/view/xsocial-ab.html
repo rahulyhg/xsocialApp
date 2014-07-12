@@ -1,0 +1,29 @@
+<script type="text/javascript" src="epan-components/xsocialApp/templates/js/scroll-to-fixed.js"></script>
+
+<div class="" style=" position: static;" id="sidebar2">
+<?rows?>
+<?row?>
+	<div id='<?$_name?>_carousel' class='<?$class?> carousel slide' data-ride="carousel">
+		<div class='carousel-inner'>
+				<h3 style="display:none;"><?name?>name<?/name?>
+				</h3>
+			<div class='item <?$active_class?> well well-sm'>
+				<a  href='<?$link?>' target='_blank' >
+					<img   style="width:100%;"; src='<?blockimg?>logo.png<?/blockimg?>'/>
+				</a>
+			</div>
+		</div>
+	</div>
+<?/row?>
+<?/rows?>
+				
+<div>
+<script type="text/javascript">
+	// $(document).ready(function() {
+	//         $('#header').scrollToFixed();
+	$('#sidebar2').scrollToFixed( { 
+		// marginTop: $('#header').outerHeight() ,
+		limit: $('#sidebar2').offset().bottom } );
+	// $('#footer').scrollToFixed( { bottom:0,limit: $('#footer').offset().bottom } );
+	//   });
+</script>

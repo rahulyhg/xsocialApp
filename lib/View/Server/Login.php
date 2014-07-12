@@ -68,18 +68,18 @@ class View_Server_Login extends \View{
 		}
 
 		// Redirect to Verify Account
-		$fb_login_btn=$this->add('Button')->set('Login Via FB');
+		$fb_login_btn=$this->add('Button')->set('Login Via FB')->addClass('btn btn-default btn-xs');
 			if($fb_login_btn->isClicked()){
 				$this->api->redirect($this->api->url(null,array('oauth_login'=>'facebook')));
 		 	}
 
- 		$google_login_btn=$this->add('Button')->set('Login Via Google');
+ 		$google_login_btn=$this->add('Button')->set('Login Via Google')->addClass('btn btn-default btn-xs');
 			if($google_login_btn->isClicked()){
 				$this->api->redirect($this->api->url(null,array('oauth_login'=>'google')));
 		 	}
 
 
-		$verify_btn=$this->add('Button')->set('Verification');
+		$verify_btn=$this->add('Button')->set('Verification')->addClass('btn btn-default btn-xs');
 			if($verify_btn->isClicked()){
 				$this->api->redirect($this->api->url(null,array('subpage'=>'xsocial-verifyaccount')));
 		 	}

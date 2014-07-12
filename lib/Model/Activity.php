@@ -250,12 +250,13 @@ class Model_Activity extends \Model_Table{
 	// creating new postcard entry
 	function createPostCard($postcard_name, $activity_detail=null, $img_id=null){
 		// if(!$this->loaded()) throw $this->exception('Can\'t create post crad');
-
+		// throw new \Exception($postcard_name, 1);
+		
 		$postcard_activity = $this->add('xsocialApp/Model_Activity');
 		$postcard_activity['activity_type']='PostCard';
 		$postcard_activity['from_member_id']=$this->api->xsocialauth->model->id;
-		$postcard_activity['name']=$postcard_name;
-		$postcard_activity['activity_detail']=$activity_detail;
+		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}}')."Created a New Post Card'";
+		$postcard_activity['activity_detail']=$postcard_name;
 		$postcard_activity['img_id']=$img_id;
 
 		$postcard_activity->save();	

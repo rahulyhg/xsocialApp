@@ -5,26 +5,23 @@ class page_xsocialApp_page_news_category extends Page {
 
 
 		$categories = $this->add('xsocialApp/Model_NewsCategory');
-		$subcribed_category_model = $this->add('xsocialApp/Model_NewsCategorySubscribeMember');
 
+			$tabs=$this->add('Tabs');
 		foreach ($categories as $category) {
-			$btn = $this->add('MyButton')->set($categories['name']);
-			if($subcribed_category = $subcribed_category_model->isAvailable($categories)){
-				$btn->addClass('btn btn-info');
-			}else{
-				$btn->addClass('btn btn-warning');		
+				$tab=$tabs->addTab($categories['name']);		
+
+			// $btn->js('click',$v->js()->reload(array('')))
+			$new_view=$tab->add('xsocialApp/View_News_List');
+			$news=$this->add('xsocialApp/Model_News');
+			$news->addCondition('news_catgory_id',$categories->id);
+			if(!$news->count()->getOne())
+				$tab->add('View_Info')->set('No News available for this category');
+			$news->setOrder('created_on','desc');
+			$new_view->setModel($news);
+			$new_view->js(true)->_selector('.newscarousel')->carousel();
+			
 
 			}
-
-			if($btn->isClicked()){
-				if($subcribed_category){
-					$subcribed_category->remove();
-				}else{
-					$subcribed_category_model->creatNew($categories);
-				}
-				$btn->js()->reload()->execute();
-			}
-
-		}
+			
 	}
 }

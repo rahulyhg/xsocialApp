@@ -24,12 +24,23 @@ class View_Activity extends \View{
 		$this->template->set('activity_id',$this->activity_array['id']);
 		$this->template->set('visibility',$this->activity_array['visibility']);
 		$this->template->trySet('is_by_friend',$this->activity_array['is_by_friend']);
-		$this->template->set('like_status',($this->activity_array['like_status']=='Y'?'UnLike':'Like'));
-		
-		$this->template->set('img',$this->activity_array['img']);
-		$this->template->setHTML('activity',$this->activity_array['name']);
-		$this->template->setHTML('video_url',$this->activity_array['video_url']);
+		if($this->activity_array['like_status']=='Y')	
+			$this->template->setHTML('like_status','<p class="glyphicon glyphicon-thumbs-down">UnLike</p>');
+		else
+			$this->template->setHTML('like_status','<p class="glyphicon glyphicon-thumbs-up">Like</p>');
 
+
+		if($this->activity_array['img'])
+		$this->template->set('img',$this->activity_array['img']);
+		else
+			$this->template->tryDel('img_block');
+		
+		$this->template->setHTML('activity',$this->activity_array['name']);
+		if($this->activity_array['video_url'])
+			$this->template->setHTML('video_url',$this->activity_array['video_url']);
+		else
+			$this->template->tryDel('video_block');
+			
 		if($this->activity_array['from_member_id']==$this->api->xsocialauth->model->id){
 			// throw new \Exception("Error Processing Request", 1);
 			
@@ -45,7 +56,6 @@ class View_Activity extends \View{
 		// $this->add('xsocialApp/View_ShareView',array('activity_id'=>$this->activity_id),'share_button');
 
 		$this->add('xsocialApp/View_ActivityLikeList',array('activity_id'=>$this->activity_id),'activity_like_list');
-		$this->add('xsocialApp/View_ActivityShareList',array('activity_id'=>$this->activity_id),'activity_share_list');
 		
 		$this->add('xsocialApp/View_ActivityComments',array('activity_id'=>$this->activity_id,'activity_array'=>$this->activity_array),'comments_block');
 
