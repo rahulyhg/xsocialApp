@@ -57,8 +57,7 @@ class View_Server_Login extends \View{
 					}
 					if(!$existing_member['is_verify']){
 						// check if verified .. if not do so .. we trust facebook :)
-						$existing_member['is_verify']=true;
-						$existing_member->save();
+						$existing_member->veryfyMember();
 					}
 					// login the member
 					$this->api->memorize('logged_in_social_user',$existing_member['emailID']);

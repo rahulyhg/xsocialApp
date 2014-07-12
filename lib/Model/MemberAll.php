@@ -258,15 +258,19 @@ class Model_MemberAll extends \Model_Table{
 		$member->addCondition('activation_code',$activation_code);
 		$member->tryLoadAny();
 		if($member->loaded()){
-			$member['is_verify']= true;
-			$this->api->exec_plugins('verifymember_register',array($member->id,$member));
-			$member->save();
+			$member->veryfyMember();
 
 			return true;
 		}
 		else
 			return false;
 		
+	}
+
+	function veryfyMember(){
+		$this['is_verify']= true;
+		$this->api->exec_plugins('verifymember_register',array($this->id,$this));
+		$this->save();
 	}
 
 
