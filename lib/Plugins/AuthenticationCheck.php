@@ -20,8 +20,8 @@ class Plugins_AuthenticationCheck extends \componentBase\Plugin{
 			$this->api->template->appendHTML('js_include','<link type="text/css" href="epan-components/xsocialApp/templates/css/xsocial.css" rel="stylesheet" />'."\n");
 		}else{
 			// You are not in any of xsocial page
-			$this->api->template->del('chat_js_spot');
-			$this->api->template->del('chat_css_spot');
+			$this->api->template->tryDel('chat_js_spot');
+			$this->api->template->tryDel('chat_css_spot');
 		}
 		// ONLY WORKS FOR PAGES CONTAINS "xsocial-" IN PAGE
 		// DO NOT CHECK FOR xsocial-login PAGE

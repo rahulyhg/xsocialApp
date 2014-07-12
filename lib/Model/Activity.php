@@ -58,31 +58,23 @@ class Model_Activity extends \Model_Table{
 		
 	}
 
-	function whoLikeText(){
-		// $text=" ";
-		// if(!$this->loaded())
-		// 	throw $this->exception('Unable To Determine Activity, Please call on loaded model of Activity');
-		// $this->addCondition('activity_type','Like');
-		// $i=1;
-		// foreach ($this as $junk) {
-		// if($i>5) continue;
-		// $text.=$this->ref('from_member_id')->get('name')." " ;
-		// $i++;
-		// }
-		// return $text;
+	function whoLikeText($getlist=false){
 		$like_activities  = $this->add('xsocialApp/Model_Activity');
 		$like_activities->addCondition('activity_type','Like');
 		$like_activities->addCondition('related_activity_id',$this->id);
 
 		$likers = $like_activities->_dsql()->del('fields')->field($like_activities->dsql()->expr('GROUP_CONCAT(concat("<a href=\"index.php?subpage=xsocial-profile&profile_of=",'.$this->member_join->table_alias.'.id,"\">",'.$this->member_join->table_alias.'.first_name," ",'.$this->member_join->table_alias.'.last_name,"</a>"))'))->getOne();
 
-		if(($likers_count = count(explode(",", $likers))) > 2){
-			return ($likers_count." liked this");
+		if(($likers_count = count(explode(",", $likers))) >2 AND !$getlist ){
+			return ('<a href="#likeList" onclick="javascript:$(this).univ().likedListFrame('.$this->id.')">'.$likers_count." liked this</a>");
+			// return ('<a href="?page=index&subpage=xsocial-likelist&activity_id='.$this->id.'" target="_blank">'.$likers_count." liked this</a>");
 		}
 
 		return $likers;
 
 	}
+
+	
 
 	function afterLoad(){
 		// $this['name']= '<a href="#">sdfsdf</a>';
