@@ -207,7 +207,17 @@ $.each({
 					$( value_div ).html( "Rs " + ui.values[ 0 ] + "/- to Rs " + ui.values[ 1 ]+ "/-" );
 				}
 			});
+    },
+    copyBillingAddress:function(b_a,b_l,b_c,b_s,b_country,b_p,s_a,s_l,s_c,s_s,s_country,s_p){
+  		$(s_a).val($(b_a).val());
+  		$(s_s).val($(b_s).val());
+  		$(s_l).val($(b_l).val());
+  		$(s_c).val($(b_c).val());
+  		$(s_country).val($(b_country).val());
+  		$(s_p).val($(b_p).val());
     }
+
+    
 },$.univ._import);
 
 $(function () { 
