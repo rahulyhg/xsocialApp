@@ -14,7 +14,7 @@
 
 <div id='activity_view_<?$activity_id?>' class='page page-header well well-sm <?$class?>' visibility="<?$visibility?>">
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-2 " data-placement="left">
 			<?profile_pic?><?/profile_pic?>
 		</div>
 
@@ -56,8 +56,8 @@
 				<?/img_block?>
 
 				<?video_block?>
-				<div class="col-md-12 associate-img">
-					<?video_url?><?/video_url?>
+				<div class="col-md-12">
+					<iframe width="60%" height="auto" src="//www.youtube.com/embed/<?video_url?><?/video_url?>" frameborder="0" allowfullscreen></iframe>
 				</div>
 				<?/video_block?>
 			</div>

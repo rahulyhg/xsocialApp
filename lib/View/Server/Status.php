@@ -18,7 +18,17 @@ class View_Server_Status extends \View{
 		$form->addSubmit('Post');
 
 		$form->getElement('video_url')->addClass('status-video-url');
-		if($form->isSubmitted()){	
+
+		$msg='You Just Updated Your Status';
+
+		if($form->isSubmitted()){
+
+			if($form['video_url']){
+			preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $form['video_url'], $matches);
+			$form['video_url']=$matches[0];
+			// throw new \Exception($form['video_url']);
+			}
+
 			$activity = $this->add('xsocialApp/Model_Activity');
 			$activity->newPost($form->getAllFields());
 
@@ -26,11 +36,12 @@ class View_Server_Status extends \View{
 			$new_activity_html = $new_activity->getHTML();
 
 			$js=array(
-					$this->js()->univ()->successMessage('You Just Updated Your Status'),
-					$this->js()->_selector('.activity-list')->prepend($new_activity_html)
+					$this->js()->univ()->successMessage($msg),
+					$this->js()->_selector('.activity-list')->prepend($new_activity_html),
+					$this->js()->reload()
 				);
 			$this->js(true,$js)->execute();
-		}
+		} 
 	}
 
 	function recursiveRender(){
