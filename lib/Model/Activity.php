@@ -54,6 +54,7 @@ class Model_Activity extends \Model_Table{
 
 
 		$this->addHook('beforeSave',$this);
+		$this->addHook('beforeDelete',$this);
 		$this->addHook('afterLoad',$this);
 		
 	}
@@ -260,6 +261,10 @@ class Model_Activity extends \Model_Table{
 		$postcard_activity['img_id']=$img_id;
 
 		$postcard_activity->save();	
+	}
+
+	function beforeDelete(){
+		$this->ref('img_id')->tryDelete();
 	}
 
 

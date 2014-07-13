@@ -13,7 +13,7 @@ class Model_NewsCategorySubscribeMember extends \Model_Table {
 		$this->add('dynamic_model/Controller_AutoCreator');
 	}
 
-	function creatNew($catgory){
+	function createNew($catgory){
 		if($this->loaded())
 			throw $this->exception('You can not use loaded Model');
 		$this['news_category_id']=$catgory->id;

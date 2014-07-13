@@ -34,6 +34,7 @@ class Model_MemberAll extends \Model_Table{
 		$this->hasMany('xsocialApp/Message','message_to_member_id');
 		$this->hasMany('xsocialApp/PointTransaction','member_id');
 		$this->hasMany('xsocialApp/MemberAttendanceLog','member_id');
+		$this->hasMany('xsocialApp/NewsCategorySubscribeMember','member_id');
 
 		$this->addExpression('name')->set('concat(first_name," ",last_name)');
 
@@ -424,6 +425,19 @@ class Model_MemberAll extends \Model_Table{
 
 		return $activity;
 
+	}
+
+	function getSubsribedNewsIDs(){
+		$newssubscribe=$this->add('xsocialApp/Model_NewsCategorySubscribeMember');
+		$newssubscribe->addCondition('member_id',$this->id);
+
+		$result=array(0);
+
+		foreach ($newssubscribe as $junk) {
+			$result[]=$newssubscribe['news_category_id'];
+		}
+
+		return $result;
 	}
 
 }
