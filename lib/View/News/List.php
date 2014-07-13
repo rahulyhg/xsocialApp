@@ -12,18 +12,10 @@ class View_News_List extends \CompleteLister{
 		}else{
 			$this->current_row['active_class']='';
 		}
+		$this->current_row_html['news']=$this->model['name'];
+		$this->current_row['news_img']=$this->model['news_img'];
 	}
 
-	// function setModel($model){
-	// 	parent::setModel($model);
-	// 	throw new \Exception($model['name'], 1);
-		
-	// 	$this->template->setHtml('news',$model['name']);
-	// }
-
-
-	
-	
 	function defaultTemplate(){
 		$l=$this->api->locate('addons',__NAMESPACE__, 'location');
 		$this->api->pathfinder->addLocation(
