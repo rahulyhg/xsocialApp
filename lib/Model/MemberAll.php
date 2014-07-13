@@ -141,10 +141,10 @@ class Model_MemberAll extends \Model_Table{
 		$this['date_of_birth']=$visitorInfo['DOB'];
 		$this['referId']=$visitorInfo['referId'];
 
-		if($visitorInfo['gender']=='female')
-			$this['profile_pic_id']='258';
-		else
-			$this['profile_pic_id']='260';
+		// if($visitorInfo['gender']=='female')
+		// 	$this['profile_pic_id']='258';
+		// else
+		// 	$this['profile_pic_id']='260';
 		if($this->save())
 			return true;
 		else
