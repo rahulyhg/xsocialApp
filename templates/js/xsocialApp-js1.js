@@ -194,6 +194,19 @@ $.each({
         $(this).univ().frameURL('MyPopup', 'index.php?page=xsocialApp_page_news_category&epan=web&subpage=xsocial-dashboard&cut_page=1', {
 
         });
+    },
+    AmountRangeSlider: function(div,field, value_div, minV,maxV){
+		$( value_div ).html( "Rs " + minV + "/- to Rs " + maxV + "/-" );
+    	 $( div ).slider({
+			orientation: "horizontal",
+			range: true,
+			values: [ minV, maxV ],
+			max: maxV,
+			slide: function( event, ui ) {
+					$( field ).val( "" + ui.values[ 0 ] + ":" + ui.values[ 1 ] );
+					$( value_div ).html( "Rs " + ui.values[ 0 ] + "/- to Rs " + ui.values[ 1 ]+ "/-" );
+				}
+			});
     }
 },$.univ._import);
 
