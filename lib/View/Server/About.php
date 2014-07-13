@@ -44,10 +44,10 @@ class View_Server_About extends \View{
 			if(!in_array($pf['category'], $profile_categories)){
 				$profile_categories[] = $pf['category'];
 				$v=$this->add('View');
-				$v->add('View')->setHTML("<b>".$pf['category']."</b>");
+				$v->add('View')->setHTML("<div class='label label-warning'>".$pf['category']."</div>");
 				$category_fields[$pf['category']]=$v;
 			}
-			$category_fields[$pf['category']]->add('View')->set($pf['name']. ' :: ' . $pfv['value']);
+			$category_fields[$pf['category']]->add('View')->setHtml('<b>'.$pf['name']. '</b> :: ' . $pfv['value']);
 
 			$pfv->destroy();
 		}
