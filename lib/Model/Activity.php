@@ -14,7 +14,7 @@ class Model_Activity extends \Model_Table{
 		$this->addField('name')->caption('Activity');
 		$this->add('filestore/Field_Image','img_id')->caption('Activity');
 		$this->addField('activity_detail');
-		$this->addField('video_url');
+		$this->addField('video_url')->caption('YouTube Video Url')->PlaceHolder('You Tube Video Url Only..');
 
 		$this->addField('visibility')->setValueList(array(100=>'Public',50=>'Friends',10=>'Private'))->defaultValue(100)->mandatory(true);
 		$this->addField('activity_type')->enum(array('StatusUpadate','Comment','Like','Share','updateCoverPage','updateProfilePic','PostCardShared','PostCard'));
