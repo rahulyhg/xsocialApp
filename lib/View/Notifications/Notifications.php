@@ -8,7 +8,7 @@ function init(){
 	parent::init();
 
 	$user=$this->api->xsocialauth->model;
-
+	// $member=$this->add('xsocialApp/Model_MemberAll');
 	if($_GET['notification_reloaded']){
 		$user->getNotified($_GET['till_id']);
 	}

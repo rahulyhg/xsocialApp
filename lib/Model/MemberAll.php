@@ -346,6 +346,13 @@ class Model_MemberAll extends \Model_Table{
 
 	}
 
+	function linkfyNotificationText($text){
+		// $text= substr($text, 2, strpos($text, "/")-2);
+		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->cu_id.'">'.$text.'</a>';
+		return $linkfyText;
+
+	}
+
 	function getNotifications($count=false){
 
 		$user=$this->api->xsocialauth->model;
