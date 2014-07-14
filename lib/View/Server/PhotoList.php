@@ -8,6 +8,7 @@ class View_Server_PhotoList extends \View{
 				
 	$images=$this->add('xsocialApp/Model_Activity');
 	$member=$this->add('xsocialApp/Model_MemberAll');
+	
 	if($_GET['profile_of'])
 		$member->load($_GET['profile_of']);
 	else
