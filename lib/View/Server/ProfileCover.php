@@ -30,7 +30,7 @@ class View_Server_ProfileCover extends \View{
 			
 		}else{
 			$edit_btn=$this->add('Button',null,'edit_btn')->set('Edit Cover')->addClass('btn btn-success btn-xs');
-			$profile_btn=$this->add('Button',null,'profile_edit')->set('Edit Profile Pic')->addClass('btn btn-success btn-xs');
+			$profile_btn=$this->add('Button',null,'profile_edit')->set('Edit Profile Pic')->addClass('btn btn-success btn-xs ');
 			$crop_cover_btn=$this->add('Button',null,'crop_btn')->set('Crop Cover')->addClass('btn btn-success btn-xs');
 			// $crop_pic_btn=$this->add('Button',null,'crop_pic_btn')->set('Crop PicCover');
 			$edit_btn->js('click')->univ()->frameURL('Edit Cover',$this->api->url('xsocialApp_page_activitypages_profilecover',array('member_id'=>$this->api->xsocialauth->model->id)));
