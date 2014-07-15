@@ -346,12 +346,27 @@ class Model_MemberAll extends \Model_Table{
 
 	}
 
-	function linkfyNotificationText($text){
+	function linkfyFriendRequestText($text){
 		// $text= substr($text, 2, strpos($text, "/")-2);
 		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->cu_id.'">'.$text.'</a>';
 		return $linkfyText;
 
 	}
+
+	function linkfyNotificationText($text){
+		$start= strpos($text,"{") + 2;
+		$end= strpos($text,"/") ;
+		$name= substr($text,$start,$end-$start);
+		$s = strpos($text,"}") + 2;
+		$s= substr($text, $s);
+		// throw new \Exception($text."end ".$s);
+		$text=$name."".$s;
+		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->cu_id.'">'.$text.'</a>';
+		return $linkfyText;
+		// return $text;
+
+	}
+
 
 	function getNotifications($count=false){
 
