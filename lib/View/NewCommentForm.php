@@ -10,6 +10,7 @@ class View_NewCommentForm extends \View{
 		$new_comment->getElement('activity_detail')->caption('comment');
 		$new_comment->getElement('img_id')->caption('image');
 		$form=$this->add('Form');
+		$form->addSubmit('comment')->addClass('btn btn-info btn-xs');
 		$form->setModel($new_comment,array('activity_detail','img_id'));
 		$comment_id_field = $form->addField('hidden','commented_activity_id')->addClass('comment_activity_id_input');
 		if($_GET['commented_activity_id'])

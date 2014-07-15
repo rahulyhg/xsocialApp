@@ -100,6 +100,7 @@ span.info {
   <div id="vcard">
     <div id="card-content">
         <div id="profile">
+            <div id="coverbtn1" class="cover-btn text-left "><?$profile_edit?></div>
           <span class="profilepic thumbnail avatar pull-left col-md-2">
           <!-- <img id="imgbadge" src="<?$timeline_pic?>"/> -->
             <?$profile_pic?>
@@ -117,7 +118,6 @@ span.info {
                 <div class="col-md-8 text-center cover-btn-margin">
                   <div id="coverbtn" class="row cover-btn">
                     <div class="col-md-3 text-left">
-                      <?$profile_edit?>
                       <?$crop_pic_btn?>
                     </div>
                     <div class="col-md-3">
@@ -188,10 +188,14 @@ function submit_image(){
     $("#timeline").mouseover(function(){
       $("#coverbtn").removeClass('cover-btn');
       $("#coverbtn").addClass('cover-btn-hover');
+      $("#coverbtn1").removeClass('cover-btn');
+      $("#coverbtn1").addClass('cover-btn-hover');
     });
     $("#timeline").mouseout(function(){
       $("#coverbtn").removeClass('cover-btn-hover');
       $("#coverbtn").addClass('cover-btn');
+      $("#coverbtn1").removeClass('cover-btn-hover');
+      $("#coverbtn1").addClass('cover-btn');
     });
     // $( ".crop_cover_pic" ).hide();
   });
