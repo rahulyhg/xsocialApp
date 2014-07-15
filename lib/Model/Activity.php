@@ -40,7 +40,7 @@ class Model_Activity extends \Model_Table{
 		});
 
 		$this->addExpression('is_by_friend')->set(function($a,$q){
-			$user_id = $a->api->xsocialauth->model->id;
+			$user_id = isset($a->api->xsocialauth)?$a->api->xsocialauth->model->id:1;
 			$friends_table = $a->add('xsocialApp/Model_Friends',array('table_alias'=>'_df'));
 			$friends_table->_dsql()->where(
 					array(
@@ -253,10 +253,12 @@ class Model_Activity extends \Model_Table{
 		// if(!$this->loaded()) throw $this->exception('Can\'t create post crad');
 		// throw new \Exception($postcard_name, 1);
 		
+		$member = $this->add('xsocialApp/Model_Activity');
 		$postcard_activity = $this->add('xsocialApp/Model_Activity');
 		$postcard_activity['activity_type']='PostCard';
 		$postcard_activity['from_member_id']=1;
-		// $postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}}')."Created a New Post Card'";
+
+		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}}')."Created a New Post Card'";
 		$postcard_activity['activity_detail']=$postcard_name;
 		$postcard_activity['img_id']=$img_id;
 
