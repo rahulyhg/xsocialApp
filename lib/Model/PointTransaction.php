@@ -17,13 +17,14 @@ class Model_PointTransaction extends \Model_Table{
 		
 	}
 
-	function createNew($point,$member_id,$remark=null){
+	function createNew($point,$member_id,$remark,$on_date=null){
 		if($this->loaded())
 			throw new \Exception("Use Empty Model Object");
 		$this['point_id']=0;
 		$this['member_id']=$member_id;
 		$this['points']=$point;
 		$this['remark']=$remark;
+		$this['on_date']=$on_date;
 		$this->save();
 		return $this;
 			

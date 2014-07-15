@@ -29,7 +29,7 @@ class View_Server_Topbar extends \View{
 		//$profile_btn=$this->add('Button',null,'profile')->set('Profile');
 		
 		$this->add('xsocialApp/View_Settings',null,'setting');
-
+		
 		//$home_btn->js('click')->univ()->redirect($this->api->url(null,array('subpage'=>'xsocial-dashboard')));
 		
 		//$profile_btn->js('click')->univ()->redirect($this->api->url(null,array('subpage'=>'xsocial-profile')));

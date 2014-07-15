@@ -8,7 +8,8 @@ class page_xsocialApp_page_owner_main extends page_componentBase_page_owner_main
 			->addMenuItem('xsocialApp_page_owner_profilefields','Profile Fields')
 			->addMenuItem('xsocialApp_page_owner_points','Point Management')
 			->addMenuItem('xsocialApp_page_owner_ab','Add Block Images')
-			->addMenuItem('xsocialApp_page_owner_news','News Management');
+			->addMenuItem('xsocialApp_page_owner_news','News Management')
+			->addMenuItem('xsocialApp_page_owner_postcard','Post Card');
 	
 		// $crud=$this->add('CRUD');
 		// $crud->setModel('xsocialApp/ProfileFields');

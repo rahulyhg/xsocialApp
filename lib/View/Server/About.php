@@ -9,7 +9,11 @@ class View_Server_About extends \View{
 
 		$this->addClass('about');
 		$this->js('reload')->reload();
-                                                 
+		
+		$view=$this->add('View');
+		$view->set("Refer ID:- ".$this->api->xsocialauth->model->id);
+		// $_GET['referId'];
+		// $this->api->xsocialauth->model->id($_GET['referId']);
 	}
 	
 	function recursiveRender(){

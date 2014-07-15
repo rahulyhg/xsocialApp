@@ -13,6 +13,9 @@ function init(){
 		$this->add('View')->set($points)->setStyle('background','#A81010');
 	else	
 		$this->add('View')->set($points);
+
+	$this->js('click')->_selector('.rps-toolbar-li')->univ()->frameURL('Reward Points',$this->api->url('xsocialApp_page_activitypages_rps'));	
+	
 		
 	}
 }

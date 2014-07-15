@@ -34,7 +34,7 @@ class Model_Activity extends \Model_Table{
 		$this->addExpression('like_status')->set(function($m,$q){
 			return $m->api->db->dsql()->table('xsocialApp_activities', 'sss')
 				->field($m->api->db->dsql()->expr('IF(id,"Y","N")'))
-				->where('from_member_id',$m->api->xsocialauth->model->id)
+				->where('from_member_id',1)
 				->where('activity_type','Like')
 				->where('related_activity_id',$q->getField('id'));
 		});
@@ -255,8 +255,8 @@ class Model_Activity extends \Model_Table{
 		
 		$postcard_activity = $this->add('xsocialApp/Model_Activity');
 		$postcard_activity['activity_type']='PostCard';
-		$postcard_activity['from_member_id']=$this->api->xsocialauth->model->id;
-		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}}')."Created a New Post Card'";
+		$postcard_activity['from_member_id']=1;
+		// $postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}}')."Created a New Post Card'";
 		$postcard_activity['activity_detail']=$postcard_name;
 		$postcard_activity['img_id']=$img_id;
 

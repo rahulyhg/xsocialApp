@@ -5,19 +5,20 @@ class page_xsocialApp_page_activitypages_cpc extends Page{
 		parent::init();
 
 		// post crad activity 
-		$form=$this->add('Form');		
+		$form=$this->add('Form');
+				
 		$activity = $this->add('xsocialApp/Model_Activity');
 		$post_card = $activity->loadActivity('PostCard');
 
 		$form->setModel($post_card,array('name','img_id'));
 		$form->addSubmit('Create Post card');
 
-		$postcard_grid=$this->add('Grid');
+		$postcard_grid=$form->add('Grid');
 		$postcard_grid->addPaginator(5);
 		
 		$postcard_grid->addColumn('template', 'type', false)->setTemplate('<img src="' .'logo'. 'icon_object_<?$type?>.png">');		
 		
-		$postcard_grid->setModel($activity->getPostCard($this->api->xsocialauth->model->id), array('name','img_id'));
+		$postcard_grid->setModel($activity->getPostCard(array('name','img_id')));
 			
 		if($form->isSubmitted()){
 			$post_card->createPostCard($form['name'],null,$form['img_id']);	
