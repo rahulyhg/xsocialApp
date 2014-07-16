@@ -462,4 +462,18 @@ class Model_MemberAll extends \Model_Table{
 		return $result;
 	}
 
+
+	function changePassword($old_passsword,$new_password){
+		if(!$this->loaded())
+			throw new \Exception('modal must be loaded at password change time');
+
+		if($this['password']==$old_passsword){
+			$this['password']=$new_password;
+			$this->save();
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

@@ -37,6 +37,6 @@ class View_ProfilePic extends \View{
 						$src="male.png";			
 		}
 		
-		$this->setElement('img')->setAttr('src',$src)->addClass('profile_pic');
+		$this->setElement('img')->setAttr('src',$src)->addClass('profile_pic')->addStyle('height','auto');
 	}
 } 
