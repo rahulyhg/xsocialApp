@@ -341,7 +341,7 @@ class Model_MemberAll extends \Model_Table{
 
 	function linkfyText($text){
 		$text= substr($text, 2, strpos($text, "/")-2);
-		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->cu_id.'">'.$text.'</a>';
+		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->auth->model->id.'">'.$text.'</a>';
 		return $linkfyText;
 
 	}

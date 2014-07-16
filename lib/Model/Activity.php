@@ -258,7 +258,7 @@ class Model_Activity extends \Model_Table{
 		$postcard_activity['activity_type']='PostCard';
 		$postcard_activity['from_member_id']=1;
 															
-		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}}')."Created a New Post Card'";
+		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->auth->model['name'].'/'.$this->api->auth->model['emailID'].'}}')."Created a New Post Card'";
 		$postcard_activity['activity_detail']=$postcard_name;
 		$postcard_activity['img_id']=$img_id;
 
