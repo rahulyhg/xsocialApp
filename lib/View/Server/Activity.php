@@ -28,6 +28,7 @@ class View_Server_Activity extends \View{
 				->where('related_member_id',$me->id)
 				->where('from_member_id',$friends)
 				->where('related_member_id',$friends)
+				->where('from_member_id',1)
 			);
 
 		$activities_2_show->_dsql()->having(
