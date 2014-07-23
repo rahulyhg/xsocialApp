@@ -28,7 +28,6 @@ class View_Activity_List extends \View{
 			}else{
 				$this->add('xsocialApp/View_Activity',array('activity_id'=>$this->model->id,'activity_array'=>$activity));
 			}
-
 		}
 
 		$div= $this->add('View',null,null,array('view/xsocial-activity-dialogs'));

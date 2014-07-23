@@ -7,7 +7,7 @@ class page_xsocialApp_page_activitypages_rps extends Page{
 
 	$points=$this->api->xsocialauth->model->ref('xsocialApp/PointTransaction');
 	$grid=$this->add('Grid');
-	$grid->setModel($points);	
+	$grid->setModel($points,array('point','points','on_date'));	
 		
 	
 	}

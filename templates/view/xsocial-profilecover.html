@@ -1,12 +1,15 @@
 
     <!-- Custom styles for this template -->
 <style>
-#vcard {
+#vcard,.back-img {
   margin: 0 auto;
   width: auto;
-  height: 300px;
   background-image:url('<?$timeline_pic?>');
   /*background-color:#31A66C;*/
+  background-size:100%;
+  height:100%;
+  max-height:280px;
+  min-height:280px;
   border-radius: 4px;
   box-shadow: 0px 5px 15px rgba(0,0,0, .3);
   background-size:100% auto;
@@ -148,9 +151,9 @@ span.info {
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Crop Cover Photo</h4>
       </div>
-      <div class="modal-body">
-        <div class="crop_cover_pic">
-          <img width="100%" id="target" src="<?$timeline_pic?>" />
+      <div class="modal-body " style="">
+        <div class="crop_cover_pic" style="width:700px;">
+          <img id="target" src="<?$timeline_pic?>" class="" />
           <form id='crop_form' onsubmit="javascript: return false;" method="post" action="?epan=web&subpage=xsocial-crop">
               <input id="x" name="x" value="" type="hidden"/>
               <input id="y" name="y" value="" type="hidden"/>
@@ -175,9 +178,8 @@ function submit_image(){
     data: $('#crop_form').serialize(),
     success: function(res){
     $('#myModal').modal('hide');
-      // document.getElementById('imgbadge').innerHTML = location.reload(true);
-      eval(res);      
-      // location.reload();  
+      eval(res);    
+      location.reload(true);  
     },
     error: function(res){  
     }
@@ -204,7 +206,7 @@ function submit_image(){
         $('#target').Jcrop({
           onSelect: showCoords,
           onChange: showCoords,
-          aspectRatio: 3.88 / 1,
+          aspectRatio: 3.1/ 1,
           keySupport: false
 
         });

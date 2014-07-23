@@ -7,11 +7,18 @@ class View_Server_About extends \View{
 	function init(){
 		parent::init();
 
+
 		$this->addClass('about');
 		$this->js('reload')->reload();
-		
+
 		$view=$this->add('View');
-		$view->set("Refer ID:- ".$this->api->xsocialauth->model->id);
+
+		if($_GET['profile_of']){
+			$view->set("Refer ID:- ".$_GET['profile_of']);
+		}else{	
+			$view->set("Refer ID:- ".$this->api->xsocialauth->model->id);
+		}
+		
 		// $_GET['referId'];
 		// $this->api->xsocialauth->model->id($_GET['referId']);
 	}

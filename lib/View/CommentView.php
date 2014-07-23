@@ -24,6 +24,7 @@ class View_CommentView extends \View{
 	function recursiveRender() {
 		$this->template->trySet('from_member',$this->comment_array['from_member']);
 		$this->template->trySet('activity_detail',$this->comment_array['activity_detail']);
+		
 		if($this->comment_array['img'])
 			$this->template->trySet('img',$this->comment_array['img']);
 		else
@@ -41,8 +42,7 @@ class View_CommentView extends \View{
 			
 		}else{
 			$this->template->tryDel('edit_delete_block');
-		}
-		
+		}		
 		parent::recursiveRender();
 	}
 

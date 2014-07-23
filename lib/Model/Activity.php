@@ -52,7 +52,7 @@ class Model_Activity extends \Model_Table{
 
 		});
 
-
+		
 		$this->addHook('beforeSave',$this);
 		$this->addHook('beforeDelete',$this);
 		$this->addHook('afterLoad',$this);
@@ -224,10 +224,12 @@ class Model_Activity extends \Model_Table{
 	}
 
 
-	function loadComments($for_activity_id){
+	function loadComments($for_activity_id,$max_count=null){
 		$this->addCondition('related_activity_id',$for_activity_id)
 						->addCondition('activity_type','Comment')
 						->setOrder('created_at');
+		if($max_count)
+			$this->setLimit($max_count);
 	}
 
 	function deleteActivity(){

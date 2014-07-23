@@ -8,7 +8,7 @@ class Model_PointTransaction extends \Model_Table{
 	function init(){
 		parent::init();
 
-		$this->hasOne('xsocialApp/Point','point_id');
+		$this->hasOne('xsocialApp/Point','point_id')->caption('Activity');
 		$this->hasOne('xsocialApp/MemberAll','member_id');
 		$this->addField('points');
 		$this->addField('remark');

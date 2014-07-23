@@ -3,11 +3,12 @@
 class page_xsocialApp_page_activitypages_notification extends Page{
 	function init() {
 		parent::init();
-
+ 
 		$this->js(true,$this->js()->_selector('.notification')->trigger('reload'));
 
 		$activity = $this->api->xsocialauth->model->getNotifications( false );
-			$member=$this->add('xsocialApp/Model_MemberAll');
+		$activity->setOrder('id','desc');
+		$member=$this->add('xsocialApp/Model_MemberAll');
 		foreach ( $activity as $junk ) {
 			$v=$this->add('xsocialApp/View_Notifications_NotificationView')->setHtml($junk['name']);
 			$btn=$v->add( 'Button',null,'button')->set( 'show me' );
