@@ -26,12 +26,12 @@ class page_xsocialApp_page_activityHandler extends Page{
 		if($activity->is_liked()){
 			$activity->unlike_it();
 			$this->api->hook('activity_unliked',array($activity_id,$activity));
-			$this->js()->_selector('#like_for_'.$activity_id)->text('Like')->addClass('glyphicon glyphicon-thumbs-up')->execute();
+			$this->js()->_selector('#like_for_'.$activity_id)->text('Like')->removeClass('glyphicon glyphicon-thumbs-down')->addClass('glyphicon glyphicon-thumbs-up')->execute();
 		}
 		else{
 			$activity->like_it();
 			$this->api->hook('activity_liked',array($activity_id,$activity));
-			$this->js()->_selector('#like_for_'.$activity_id)->text('UnLike')->addClass('glyphicon glyphicon-thumbs-down')->execute();
+			$this->js()->_selector('#like_for_'.$activity_id)->text('UnLike')->removeClass('glyphicon glyphicon-thumbs-up')->addClass('glyphicon glyphicon-thumbs-down')->execute();
 		}
 
 	}
