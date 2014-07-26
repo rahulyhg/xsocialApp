@@ -21,7 +21,7 @@ function init(){
 		$this->add('View')->set($count['count']);
 	
 	
-	$this->js('click')->_selector('.notification-toolbar-li')->univ()->frameURL('Notifications',$this->api->url('xsocialApp_page_activitypages_notification'));
+	$this->js('click')->_selector('.notification-toolbar-li')->univ()->frameURL('Notifications',$this->api->url('xsocialApp_page_activitypages_notification'),array('width'=>'600px'));
 	
 	$this->addClass('notification');
 	$this->js('reload')->reload(array('notification_reloaded'=>1,'till_id'=>$count['max_id']));

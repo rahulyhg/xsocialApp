@@ -16,7 +16,7 @@ function init(){
 	else
 		$this->add('View')->set($count);
 
-	$this->js('click')->_selector('.req-toolbar-li')->univ()->frameURL('Friend List',$this->api->url('xsocialApp_page_activitypages_friendsrequests'));
+	$this->js('click')->_selector('.req-toolbar-li')->univ()->frameURL('Friend List',$this->api->url('xsocialApp_page_activitypages_friendsrequests'),array('width'=>'600px'));
 
 	}
 	

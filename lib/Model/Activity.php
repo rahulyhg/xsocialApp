@@ -64,10 +64,10 @@ class Model_Activity extends \Model_Table{
 		$like_activities->addCondition('activity_type','Like');
 		$like_activities->addCondition('related_activity_id',$this->id);
 
-		$likers = $like_activities->_dsql()->del('fields')->field($like_activities->dsql()->expr('GROUP_CONCAT(concat("<a href=\"index.php?subpage=xsocial-profile&profile_of=",'.$this->member_join->table_alias.'.id,"\">",'.$this->member_join->table_alias.'.first_name," ",'.$this->member_join->table_alias.'.last_name,"</a>"))'))->getOne();
+		$likers = $like_activities->_dsql()->del('fields')->field($like_activities->dsql()->expr('GROUP_CONCAT(concat("<a href=\"index.php?subpage=xsocial-profile&profile_of=",'.$this->member_join->table_alias.'.id,"\">",'.$this->member_join->table_alias.'.first_name," ",'.$this->member_join->table_alias.'.last_name, "</a>"))'))->getOne();
 
 		if(($likers_count = count(explode(",", $likers))) >2 AND !$getlist ){
-			return ('<a href="#likeList" onclick="javascript:$(this).univ().likedListFrame('.$this->id.')">'.$likers_count." liked this</a>");
+			return ('<a href="#likeList" onclick="javascript:$(this).univ().likedListFrame('.$this->id.')">'.$likers_count." liked this"."<div id='like-list-for-activity-".$this->id."' title='Likers of Activity' class='xsocial-like-list' style='display:none;'>".$likers."</div></a>");
 			// return ('<a href="?page=index&subpage=xsocial-likelist&activity_id='.$this->id.'" target="_blank">'.$likers_count." liked this</a>");
 		}
 
@@ -142,7 +142,7 @@ class Model_Activity extends \Model_Table{
 		// echo print_r($other_fields);
 		// echo "</pre>";
 		$share_activity = $this->add('xsocialApp/Model_Activity');
-		$share_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}} Updated Status'). " Shared '" . $this['activity_detail'] ."'";
+		$share_activity['name']=$this->ref('from_member_id')->linkfyText($this->api->cu_name). " Shared '" ." ". $this['activity_detail'] ."'";
 		$share_activity['activity_type']='Share';
 		// $share_activity['activity_type']='PostCardShared';//for testing purpose
 		$share_activity['from_member_id']=$this->api->cu_id;
@@ -150,9 +150,7 @@ class Model_Activity extends \Model_Table{
 		$share_activity['visibility']=$visibility;
 		$share_activity['img_id']=$this['img_id'];
 		$share_activity['activity_detail']=$activity_detail;
-		// throw new \Exception($this['img_id'], 1);
-		
-
+		// throw new \Exception($this['img_id'], 1);		
 		$share_activity->save();
 		// $this->api->exec_plugins('OnPostCardShared',array($share_activity['from_member_id']));
 
@@ -197,7 +195,6 @@ class Model_Activity extends \Model_Table{
 		$comment_activity['from_member_id']=$this->api->cu_id;
 		$comment_activity['related_activity_id']=$this->id;
 		$comment_activity['activity_detail']=$comment;
-		$comment_activity['img_id']=$img_id;
  
 		$comment_activity->save();	
 		return $comment_activity;
@@ -205,15 +202,16 @@ class Model_Activity extends \Model_Table{
 
 	function newPost($post_details){
 		if($this->loaded()) throw $this->execption("New Post Can't be updated, It must be empty before save");
-		$this['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}} Updated Status');
-		
-		// throw new \Exception($this['StatusUpadate'], 1);
+		$this['name']=$this->ref('from_member_id')->linkfyText($this->api->cu_name.' Updated Status');
+
 		$this['from_member_id']=$this->api->cu_id;
 		$this['activity_detail']=$post_details['activity_detail'];
 		$this['img_id']=$post_details['img_id'];
 		$this['video_url']=$post_details['video_url'];
 		$this['visibility']=$post_details['visibility'];
 		$this['activity_type']='StatusUpadate';
+		// throw new \Exception($this['name']);
+		
 		$this->save();
 
 		// throw new \Exception($this['img'], 1);
@@ -225,6 +223,7 @@ class Model_Activity extends \Model_Table{
 
 
 	function loadComments($for_activity_id,$max_count=null){
+		
 		$this->addCondition('related_activity_id',$for_activity_id)
 						->addCondition('activity_type','Comment')
 						->setOrder('created_at');
@@ -260,7 +259,7 @@ class Model_Activity extends \Model_Table{
 		$postcard_activity['activity_type']='PostCard';
 		$postcard_activity['from_member_id']=1;
 															
-		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText('{{'.$this->api->auth->model['name'].'/'.$this->api->auth->model['emailID'].'}}')."Created a New Post Card'";
+		$postcard_activity['name']=$this->ref('from_member_id')->linkfyText($this->api->auth->model['name'].' Created a New Post Card' );
 		$postcard_activity['activity_detail']=$postcard_name;
 		$postcard_activity['img_id']=$img_id;
 

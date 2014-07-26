@@ -1,33 +1,23 @@
 <style>
-	.name{
-		text-transform: capitalize;
-	}
-	ul li{
-		list-style-type: none;
-	}
-	.notify{
-
+	.list-group{
+		padding: 0 !important;
+		margin: 2px !important;
 	}
 </style>
-
 <div id='<?$_name?>'>
-
-		<div class="panel panel-default">
-  			<div class="panel-body">
-	    	<a href="#">
-		    <span class="badge pull-right"><?button?><?/button?></span>
-	      	<div class="row">
-	      	<div class="col-md-10 notify">
-	      		<?$Content?>
-	      	</div>
-	      </div>
-	    </a>
-	  </div>
-	 </div>
-	</div> 	
-
-<script>
-	$(document).ready(function(){
-		//$(".notify").hide();
-	});
-</script>
+		<ol class="list-group">
+	<div class="row list-group-item">
+		  	<div class="col-md-2">
+		  		<div style="width:100%;">
+		  		<?$profile_pic?>
+		  		</div>	
+		  	</div>
+		  	<div class="col-md-6">
+		  		<?$Content?>
+		  	</div>
+		  	<div class="col-md-4 text-right">
+		  		<?$button?>	
+		  	</div>
+	</div>
+		</ol>
+</div> 	

@@ -13,7 +13,7 @@ class View_Notifications_Friends_Request extends \View{
 
 
 		$member=$this->add('xsocialApp/Model_MemberAll');
-		$profilePic = $profile_col->add('xsocialApp/View_ProfilePic',array('member_id'=>$this->request_from_id))->addStyle(array("width"=>'60%',"height"=>'80px;'))->addClass('img-thumbnail img-circle ');
+		$profilePic = $profile_col->add('xsocialApp/View_ProfilePic',array('member_id'=>$this->request_from_id))->addStyle(array("width"=>'100%',"min-height"=>'75px;','max-height'=>'75px;'))->addClass('img-thumbnail img-circle ');
 
 		$details_col->add('View')->setHtml($member->linkfyFriendRequestText($profilePic->member['name']))->addStyle('text-transform','uppercase')->addClass('well well-sm');
 		

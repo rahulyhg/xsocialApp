@@ -340,13 +340,14 @@ class Model_MemberAll extends \Model_Table{
 
 
 	function linkfyText($text){
-		$text= substr($text, 2, strpos($text, "/")-2);
+		// $text= substr($text, 2, strpos($text, "/")-2);
 		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->auth->model->id.'">'.$text.'</a>';
 		return $linkfyText;
 
 	}
 
 	function linkfyFriendRequestText($text){
+		// throw new \Exception($text);	
 		// $text= substr($text, 2, strpos($text, "/")-2);
 		$linkfyText='<a href="?subpage=xsocial-profile&profile_of='.$this->api->cu_id.'">'.$text.'</a>';
 		return $linkfyText;
@@ -406,7 +407,7 @@ class Model_MemberAll extends \Model_Table{
 		
 		$activity=$this->add('xsocialApp/Model_Activity');
 
-		$activity['name']=$this->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}} Updated Profile');
+		$activity['name']=$this->linkfyText($this->api->cu_name.' Updated Profile');
 		$activity['from_member_id']=$this->id;
 		$activity['activity_detail']='update profile pic';
 		$activity['img_id']=$details['img_id'];
@@ -427,14 +428,14 @@ class Model_MemberAll extends \Model_Table{
 		
 		$activity=$this->add('xsocialApp/Model_Activity');
 
-		$activity['name']=$this->linkfyText('{{'.$this->api->cu_name.'/'.$this->api->cu_emailid.'}} Updated Cover Page');
+		$activity['name']=$this->linkfyText($this->api->cu_name.' Updated Cover Page');
 		$activity['from_member_id']=$this->id;
 		$activity['activity_detail']='update cover page';
 		$activity['img_id']=$details['img_id'];
 		$activity['visibility']=100;
 		$activity['activity_type']='updateCoverPage';
 		$activity->save();
-
+		
 		return $activity;
 
 	}

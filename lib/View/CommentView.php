@@ -31,7 +31,7 @@ class View_CommentView extends \View{
 			$this->template->tryDel('comment_img_block');
 		$this->template->set('activity_id',$this->comment_array['id']);
 		$this->template->set('like_status',($this->comment_array['like_status']=='Y'?'UnLike':'Like'));
-		
+			
 		$this->add('xsocialApp/View_ProfilePic',array('profile_pic_url'=>$this->comment_array['profile_pic']),'profile_pic');
 		// $this->add('xsocialApp/View_LikeView',array('activity_id'=>$this->activity_id,'current_like_status'=>$this->comment_array['like_status']),'like_view_spot');
 		if($this->comment_array['from_member_id']==$this->api->xsocialauth->model->id){

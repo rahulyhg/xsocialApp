@@ -215,6 +215,10 @@ $.each({
   		$(s_c).val($(b_c).val());
   		$(s_country).val($(b_country).val());
   		$(s_p).val($(b_p).val());
+    },
+
+    likedListFrame:function(activity_id){
+    	$('#like-list-for-activity-'+activity_id).dialog();
     }
 
     
