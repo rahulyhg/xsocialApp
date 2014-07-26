@@ -15,11 +15,9 @@ class View_Server_PhotoList extends \View{
 		$member->load($this->api->xsocialauth->model->id);
 
 	$images->addCondition('from_member_id',$member->id);
+	$images->addCondition('img_id','<>',null);
 	
-	$count=0;//counting total images uploaded by member
-	foreach ($images as $key) {
-		$count++;
-	}
+	$count= $images->count()->getOne();
 
 	$images->setLimit(6);
 	$images->setOrder('id','desc');

@@ -48,7 +48,7 @@ class Model_MemberAll extends \Model_Table{
 	function getAllFriends($return_query=false){
 
 		$q='
-			/* MAINE REQUEST BHEJI MATLAB MERA FRIEND*/
+			/* MAINE REQUEST BHEJI AUR USNE ACCEPT KARI MATLAB MERA FRIEND*/
 			(
 				SELECT request_to_id friends_id from xsocialApp_friends WHERE request_from_id='.$this->id.' and is_accepted =1
 			)
@@ -76,9 +76,11 @@ class Model_MemberAll extends \Model_Table{
 	function getAllFriendsDetails(){
 
 		$maine_request_bheji = $this->add('xsocialApp/Model_MemberAll');
-		$maine_request_bheji->join('xsocialApp_friends.request_to_id')
-							->addField('request_from_id');
+		$x=$maine_request_bheji->join('xsocialApp_friends.request_to_id');
+							$x->addField('request_from_id');
+							$x->addField('is_accepted');
 		$maine_request_bheji->addCondition('request_from_id',$this->id);
+		$maine_request_bheji->addCondition('is_accepted',true);
 
 
 		$usne_request_bheji_maine_acecpt_kari = $this->add('xsocialApp/Model_MemberAll');

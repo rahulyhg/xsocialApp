@@ -37,9 +37,11 @@ class View_Server_ProfileCover extends \View{
 			$profile_btn->js('click')->univ()->frameURL('Edit Profile',$this->api->url('xsocialApp_page_activitypages_editprofile',array('member_id'=>$this->api->xsocialauth->model->id)));
 		}
 
-		$this->template->set('timeline_pic',$member['timeline_pic']); 		
+		$this->template->set('timeline_pic',$member['timeline_pic'].'?time='.rand(10000,99999));
 		$this->template->set('member_name',$member['name']); 		
 	}
+
+	
 
 	function defaultTemplate(){
 		$l=$this->api->locate('addons',__NAMESPACE__, 'location');

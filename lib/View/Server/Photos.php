@@ -10,6 +10,7 @@ class View_Server_Photos extends \View{
 		$photos=$this->add('xsocialApp/View_Photo_Lister');
 		$images=$this->add('xsocialApp/Model_Activity');
 		$images->addCondition('from_member_id',$this->api->xsocialauth->model->id);
+		$images->addCondition('img_id','<>',null);
 		$images->setOrder('id','desc');
 		$photos->setModel($images);
 

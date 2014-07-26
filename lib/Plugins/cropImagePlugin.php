@@ -11,6 +11,7 @@ class Plugins_cropImagePlugin extends \componentBase\Plugin{
 	}
 
 	function CropImage(){
+		$this->add('xsocialApp/Plugins_AuthenticationCheck')->AuthenticatePage($this,$this);
 		if($_GET['crop_image']){
 				
 			$targ_w = $_GET['w'];
@@ -19,7 +20,7 @@ class Plugins_cropImagePlugin extends \componentBase\Plugin{
 			$jpeg_quality = 90;
 
 			$old_dir = getcwd();
-			chdir('..');
+			// chdir('..');
 			$src = getcwd() . $this->api->xsocialauth->model['timeline_pic'];
 			chdir($old_dir);
 

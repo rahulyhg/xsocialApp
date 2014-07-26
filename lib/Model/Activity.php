@@ -195,6 +195,11 @@ class Model_Activity extends \Model_Table{
 		$comment_activity['from_member_id']=$this->api->cu_id;
 		$comment_activity['related_activity_id']=$this->id;
 		$comment_activity['activity_detail']=$comment;
+		
+		if($img_id){
+			// throw new \Exception($img_id);			
+			$comment_activity['img_id']=$img_id;
+		}
  
 		$comment_activity->save();	
 		return $comment_activity;
