@@ -149,6 +149,7 @@ class Model_Activity extends \Model_Table{
 		$share_activity['related_activity_id']=$this->id;
 		$share_activity['visibility']=$visibility;
 		$share_activity['img_id']=$this['img_id'];
+		$share_activity['video_url']=$this['video_url'];
 		$share_activity['activity_detail']=$activity_detail;
 		// throw new \Exception($this['img_id'], 1);		
 		$share_activity->save();
